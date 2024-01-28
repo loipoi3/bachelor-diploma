@@ -10,8 +10,11 @@ import random
 import warnings
 
 warnings.filterwarnings("ignore", category=UndefinedMetricWarning)
+
+
 # random.seed(42)
 # np.random.seed(42)
+
 
 # Load breast cancer dataset
 data = load_breast_cancer()
@@ -32,17 +35,12 @@ pset.addPrimitive(np.divide, 2)
 pset.addPrimitive(np.power, 2)
 pset.addPrimitive(np.maximum, 2)
 pset.addPrimitive(np.minimum, 2)
-pset.addPrimitive(np.greater, 2)
-
-for idx in range(X_train_scaled.shape[1] - 1):
-    pset.addTerminal(random.uniform(-2, 2), name=f'rand_val_{idx}')
-pset.addTerminal(math.e, name='e_const')
 
 creator.create("FitnessMax", base.Fitness, weights=(-1.0,))
 creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
-toolbox.register("expr", gp.genFull, pset=pset, min_=5, max_=5)
+toolbox.register("expr", gp.genFull, pset=pset, min_=3, max_=3)
 toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.expr)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
@@ -53,7 +51,8 @@ def evaluate(individual):
     func = gp.compile(individual, pset)
 
     # Make predictions on the training set
-    probabilities = np.array([func(*x) for x in X_train])
+    pred = np.array([func(*x) for x in X_train])
+    probabilities = 1 / (1 + np.exp(-pred))
 
     # Check for NaN or infinity values in probabilities
     if np.isnan(probabilities).any() or np.isinf(probabilities).any():
@@ -66,14 +65,39 @@ def evaluate(individual):
     return loss,
 
 
+def mutate_custom(individual, pset):
+    # Randomly select a node in the individual
+    node_index = random.randrange(len(individual))
+
+    # If the selected node is not a terminal (function or operator)
+    if isinstance(individual[node_index], gp.Primitive):
+        # Randomly select a new operation from the primitive set
+        new_primitive = random.choice(list(pset.primitives.values())[0])
+
+        # Replace the primitive of the selected node with the new one
+        individual[node_index] = new_primitive
+
+    # If the selected node is a terminal (input variable)
+    elif isinstance(individual[node_index], gp.Terminal):
+        # Randomly select a new input variable (column)
+        new_terminal = random.choice(list(pset.terminals.values())[0])
+
+        # Replace the terminal of the selected node with the new one
+        # individual[node_index].name = new_terminal.name
+        # individual[node_index].value = new_terminal.value
+        individual[node_index] = new_terminal
+
+    return individual,
+
+
 toolbox.register("evaluate", evaluate)
 toolbox.register("select", tools.selBest)
-toolbox.register("mutate", mutate_custom)
+toolbox.register("mutate", mutate_custom, pset=pset)
 
 # Set up the algorithm parameters
 population_size = 1  # Each iteration consists of one individual
 n_mutations = 2  # Number of single-point mutations to be applied in each iteration
-ngen = 10000
+ngen = 2
 
 # Initialize the population
 pop = toolbox.population(n=population_size)
@@ -84,27 +108,34 @@ def visualize_expression(individual):
     # Print the tree structure of the individual
     print("Mathematical Expression:")
     print(str(individual))
-    print()
 
 
 # Begin the evolution
 for gen in range(ngen):
     # Clone the individual for mutation
     best_ind = toolbox.clone(pop[0])
+    best_ind.fitness.values = toolbox.evaluate(best_ind)
+    print(f"Iter: {gen} Best ind:")
     visualize_expression(best_ind)
+    print(f"Fitness: {best_ind.fitness.values}\n")
+
     # Create n individuals by applying single-point mutations
     mutated_individuals = [toolbox.clone(best_ind) for _ in range(n_mutations)]
     for ind in mutated_individuals:
         toolbox.mutate(ind)
-        # visualize_expression(ind)
-        exit()
+        print(f"Iter: {gen} Mut ind:")
+        visualize_expression(ind)
+
         # Evaluate the mutated individual
         fitness = toolbox.evaluate(ind)
+        print(f"Fitness: {fitness}\n")
         ind.fitness.values = fitness
 
     # Select the best individual among the mutated ones and the initial one
     best_ind = toolbox.select(mutated_individuals + [pop[0]], 1)[0]
-
+    print(f"Iter: {gen} final Best ind:")
+    visualize_expression(best_ind)
+    print("=" * 100)
     # Replace the current population with the selected individual
     pop[:] = [toolbox.clone(best_ind)]
 
@@ -113,22 +144,5 @@ best_ind = pop[0]
 
 # Compile the best individual and make predictions on the test set
 best_func = gp.compile(best_ind, pset)
-test_predictions = [best_func(*x) for x in X_test]
-
-# threshold = 0
-# accuracy_lst, precision_lst, recall_lst, f1_lst = [], [], [], []
-# while threshold <= 100:
-#     y_pred = [0 if prob < threshold else 1 for prob in test_predictions]
-#     accuracy_lst.append((accuracy_score(y_test, y_pred), threshold))
-#     precision_lst.append((precision_score(y_test, y_pred), threshold))
-#     recall_lst.append((recall_score(y_test, y_pred), threshold))
-#     f1_lst.append((f1_score(y_test, y_pred), threshold))
-#     threshold += 0.01
-# best_f1_score, best_threshold = max(f1_lst, key=lambda x: x[0])
-# best_f1_index = f1_lst.index((best_f1_score, best_threshold))
-# best_accuracy = accuracy_lst[best_f1_index][0]
-# best_precision = precision_lst[best_f1_index][0]
-# best_recall = recall_lst[best_f1_index][0]
-# print("(1+lambda)-EA with GP:")
-# print(f"Best threshold={best_threshold}\nBest accuracy={best_accuracy}\nBest precision={best_precision}\n"
-#       f"Best recall={best_recall}\nBest f1-score={best_f1_score}\n")
+test_predictions = np.array([best_func(*x) for x in X_test])
+test_predictions = 1 / (1 + np.exp(-test_predictions))
