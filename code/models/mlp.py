@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.metrics import log_loss
+import time
 
 
 class MLP:
@@ -33,6 +34,7 @@ class MLP:
     def fit(self, X, y, check_test_statistic=False, X_test=None, y_test=None):
         # Training loop
         self._errors = []
+        self._times = []
         initial_loss = log_loss(y, self._eval_model(X))
         self._errors.append(initial_loss)
         if check_test_statistic:
@@ -40,6 +42,7 @@ class MLP:
             initial_test_loss = log_loss(y_test, self._eval_model(X_test))
             self._errors_test.append(initial_test_loss)
         for _ in range(self.max_iter):
+            start_time = time.time()
             layer_index = np.random.randint(0, len(self._weights), size=1)[0]
             feature_index = np.random.randint(0, len(self._weights[layer_index]), size=1)[0]
             neuron_index = np.random.randint(0, len(self._weights[layer_index][feature_index]), size=1)[0]
@@ -54,6 +57,7 @@ class MLP:
             if check_test_statistic:
                 current_test_loss = log_loss(y_test, self._eval_model(X_test))
                 self._errors_test.append(current_test_loss)
+            self._times.append(time.time() - start_time)
 
     def predict(self, X, threshold):
         output = self._eval_model(X)
