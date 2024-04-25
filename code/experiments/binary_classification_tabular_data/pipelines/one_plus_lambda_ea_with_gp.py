@@ -3,7 +3,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from code.utils import plot_losses, summarize_best_loss_performance
 
 
-def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test):
+def run_one_plus_lambda_ea_with_gp(X_train, X_test, y_train, y_test):
     """
     Train and evaluate a genetic algorithm model with guided propagation on PCA-transformed data.
 
@@ -14,8 +14,8 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test):
     y_test (numpy array): Target labels for the test data.
     """
     # Initialize and run the genetic algorithm model
-    model = GeneticAlgorithmModel(X_train_pca, y_train, X_test_pca, y_test, 9)
-    champion, train_losses, test_losses, time_list = model.run(lambd=2, max_generations=500)
+    model = GeneticAlgorithmModel(X_train, y_train, X_test, y_test, 4)
+    champion, train_losses, test_losses, time_list = model.run(lambd=2, max_generations=400)
 
     print("(1 + lambda) - EA with GP:")
     # Plot the evolution of training and testing losses over generations
@@ -28,7 +28,7 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test):
     accuracy_lst, precision_lst, recall_lst, f1_lst = [], [], [], []
     while threshold <= 1.0:
         # Predict using the champion model at the current threshold
-        y_pred = model.make_predictions_with_threshold(champion, X_test_pca, threshold=threshold)
+        y_pred = model.make_predictions_with_threshold(champion, X_test, threshold=threshold)
         # Evaluate and store different performance metrics
         accuracy_lst.append((accuracy_score(y_test, y_pred), threshold))
         precision_lst.append((precision_score(y_test, y_pred, zero_division=0), threshold))

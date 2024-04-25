@@ -1,11 +1,12 @@
-from code.models.one_plus_lambda_ea_with_gp_encodings import GeneticAlgorithmModel
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from code.models.mlp import MLP
 from code.utils import plot_losses, summarize_best_loss_performance
 
 
-def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test):
+def run_mlp_with_ga(X_train, X_test, y_train, y_test):
     """
-    Train and evaluate a genetic algorithm model with guided propagation on PCA-transformed data.
+    Trains a Multilayer Perceptron (MLP) using Genetic Algorithm (GA) for optimization,
+    and evaluates it using various metrics at different decision thresholds.
 
     Args:
     X_train_pca (numpy array): PCA-transformed features for the training data.
@@ -13,34 +14,33 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test):
     y_train (numpy array): Target labels for the training data.
     y_test (numpy array): Target labels for the test data.
     """
-    # Initialize and run the genetic algorithm model
-    model = GeneticAlgorithmModel(X_train_pca, y_train, X_test_pca, y_test, 9)
-    champion, train_losses, test_losses, time_list = model.run(lambd=2, max_generations=500)
+    # Initialize and train the MLP model
+    model = MLP(hidden_layer_sizes=(X_train.shape[1], 10, 15, 20, 15, 10, 1), max_iter=30000)
+    model.fit(X_train, y_train, check_test_statistic=True, X_test=X_test, y_test=y_test)
 
-    print("(1 + lambda) - EA with GP:")
-    # Plot the evolution of training and testing losses over generations
-    plot_losses(train_losses, test_losses)
-    # Summarize the performance in terms of test loss and computation time
-    summarize_best_loss_performance(test_losses, time_list)
+    print("MLP with GA:")
+    # Plot training and test loss history
+    plot_losses(model._errors, model._errors_test)
+    # Summarize best test loss performance and corresponding computation times
+    summarize_best_loss_performance(model._errors_test, model._times)
 
-    # Analyze model predictions at various thresholds to maximize F1 score
+    # Initialize lists to store performance metrics at different thresholds
     threshold = 0.0
     accuracy_lst, precision_lst, recall_lst, f1_lst = [], [], [], []
+    # Iterate through thresholds to find the best for classification based on F1 score
     while threshold <= 1.0:
-        # Predict using the champion model at the current threshold
-        y_pred = model.make_predictions_with_threshold(champion, X_test_pca, threshold=threshold)
-        # Evaluate and store different performance metrics
+        y_pred = model.predict(X_test, threshold=threshold)
         accuracy_lst.append((accuracy_score(y_test, y_pred), threshold))
         precision_lst.append((precision_score(y_test, y_pred, zero_division=0), threshold))
         recall_lst.append((recall_score(y_test, y_pred), threshold))
         f1_lst.append((f1_score(y_test, y_pred), threshold))
         threshold += 0.01
 
-    # Identify the threshold(s) that yielded the highest F1 score
+    # Identify the maximum F1 score and corresponding best thresholds
     max_f1_score = max(f1_lst, key=lambda x: x[0])[0]
     best_thresholds = [threshold for f1, threshold in f1_lst if f1 == max_f1_score]
 
-    # Output the best performance metrics at optimal thresholds
+    # Output the best thresholds and corresponding performance metrics
     for th in best_thresholds:
         index = [i for i, (f1, threshold) in enumerate(f1_lst) if threshold == th][0]
         print(f"Threshold={th:.2f}, Accuracy={accuracy_lst[index][0]:.4f}, "

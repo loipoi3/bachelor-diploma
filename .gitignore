@@ -1,6 +1,10 @@
 2202.09679.pdf
 pictures/
 datasets/
+tex_file/
+checkpoints/
+template_v3d/
+resnet-34/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

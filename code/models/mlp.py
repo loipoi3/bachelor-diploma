@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.metrics import log_loss
 import time
+from scipy.special import softmax
 
 
 class MLP:
@@ -39,8 +40,6 @@ class MLP:
                     (self.hidden_layer_sizes[idx], self.hidden_layer_sizes[idx + 1])
                 )
             )
-        xavier_stddev = np.sqrt(6.0 / (self.hidden_layer_sizes[-1] + 1))
-        self._weights.append(np.random.uniform(-xavier_stddev, xavier_stddev, (self.hidden_layer_sizes[-1], 1)))
 
         self._errors = None
         self._errors_test = None
@@ -56,9 +55,15 @@ class MLP:
             output (array): Output after passing through the MLP.
         """
         output = X
-        for layer in range(len(self._weights)):
+        for layer in range(len(self._weights) - 1):
             output = np.dot(output, self._weights[layer])
             output = 1 / (1 + np.exp(-output))
+        if self._weights[-1].shape[1] == 1:
+            output = np.dot(output, self._weights[-1])
+            output = 1 / (1 + np.exp(-output))
+        else:
+            output = np.dot(output, self._weights[-1])
+            output = softmax(output, axis=1)
         return output
 
     def fit(self, X, y, check_test_statistic: bool = False, X_test=None, y_test=None):
@@ -101,17 +106,21 @@ class MLP:
                 self._errors_test.append(current_test_loss)
             self._times.append(time.time() - start_time)
 
-    def predict(self, X, threshold: float):
+    def predict(self, X, threshold=None, classes: int = 1):
         """
         Predict labels for given input X based on a threshold.
 
         Parameters:
             X (array): Input features.
             threshold (float): Threshold for converting probabilities to class labels.
+            classes (int): Number of classes.
 
         Returns:
             y_pred (array): Predicted class labels.
         """
         output = self._eval_model(X)
-        y_pred = (output >= threshold).astype(int)
+        if classes == 1:
+            y_pred = (output >= threshold).astype(int)
+        else:
+            y_pred = np.argmax(output, axis=1)
         return y_pred

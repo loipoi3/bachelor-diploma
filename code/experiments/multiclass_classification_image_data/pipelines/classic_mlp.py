@@ -1,7 +1,6 @@
 import time
 from sklearn.metrics import log_loss, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.neural_network import MLPClassifier
-
 from code.utils import plot_losses, summarize_best_loss_performance
 
 
@@ -15,10 +14,10 @@ def run_classic_mlp(X_train_pca, X_test_pca, y_train, y_test):
     y_train (numpy array): Training data labels.
     y_test (numpy array): Test data labels.
     """
-    # Initialize LogisticRegression model for iterative learning
-    mlp = MLPClassifier(hidden_layer_sizes=(), max_iter=1, warm_start=True)
+    # Creating an MLPClassifier with no hidden layers
+    mlp = MLPClassifier(hidden_layer_sizes=(512, 256), max_iter=1, warm_start=True)
     train_log_losses, test_log_losses = [], []
-    n_iterations = 20
+    n_iterations = 1000
     time_list = []
 
     # Perform training over a set number of iterations to gather loss data
@@ -48,9 +47,9 @@ def run_classic_mlp(X_train_pca, X_test_pca, y_train, y_test):
         y_prob = mlp.predict_proba(X_test_pca)[:, 1]
         y_pred = (y_prob > threshold).astype(int)
         accuracy_lst.append((accuracy_score(y_test, y_pred), threshold))
-        precision_lst.append((precision_score(y_test, y_pred, zero_division=0), threshold))
-        recall_lst.append((recall_score(y_test, y_pred), threshold))
-        f1_lst.append((f1_score(y_test, y_pred), threshold))
+        precision_lst.append((precision_score(y_test, y_pred, zero_division=0, average='macro'), threshold))
+        recall_lst.append((recall_score(y_test, y_pred, average='macro'), threshold))
+        f1_lst.append((f1_score(y_test, y_pred, average='macro'), threshold))
         threshold += 0.01
 
     max_f1_score = max(f1_lst, key=lambda x: x[0])[0]
