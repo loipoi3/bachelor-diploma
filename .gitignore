@@ -3,7 +3,6 @@ pictures/
 datasets/
 tex_file/
 checkpoints/
-template_v3d/
 resnet-34/
 
 # Byte-compiled / optimized / DLL files
