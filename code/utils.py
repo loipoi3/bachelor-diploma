@@ -38,3 +38,4 @@ def summarize_best_loss_performance(test_losses: list, time_list: list):
     print("Best Test Loss:", best_test_loss)
     print("Indexes of Best Test Loss:", best_indexes)
     print("Total Times up to these iterations (seconds):", total_times_up_to_best)
+    return best_test_loss, total_times_up_to_best[0]

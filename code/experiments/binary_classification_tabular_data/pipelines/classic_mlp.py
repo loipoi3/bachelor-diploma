@@ -15,9 +15,11 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
     y_test (numpy array): Test data labels.
     """
     # Initialize LogisticRegression model for iterative learning
-    mlp = MLPClassifier(hidden_layer_sizes=(10, 15, 20, 15, 10), max_iter=1, warm_start=True)
+    mlp = MLPClassifier(hidden_layer_sizes=(10, 15, 10), activation="tanh", solver="sgd", alpha=0.0008624588573893637,
+                        learning_rate_init=0.003641245927855662, learning_rate="adaptive", max_iter=1, batch_size=32,
+                        tol=1.57016158038566e-05, shuffle=False, early_stopping=False, warm_start=True)
     train_log_losses, test_log_losses = [], []
-    n_iterations = 200
+    n_iterations = 118
     time_list = []
 
     # Perform training over a set number of iterations to gather loss data
@@ -38,7 +40,7 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
 
     print("Classic MLP:")
     plot_losses(train_log_losses, test_log_losses)
-    summarize_best_loss_performance(test_log_losses, time_list)
+    _, res_time = summarize_best_loss_performance(test_log_losses, time_list)
 
     # Find the best threshold for binary classification by maximizing the F1 score
     threshold = 0.0
@@ -61,3 +63,5 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
         print(f"Threshold={th:.2f}, Accuracy={accuracy_lst[index][0]:.4f}, "
               f"Precision={precision_lst[index][0]:.4f}, Recall={recall_lst[index][0]:.4f}, "
               f"F1-score={f1_lst[index][0]:.4f}")
+
+    return res_time

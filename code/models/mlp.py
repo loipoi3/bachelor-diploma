@@ -66,7 +66,7 @@ class MLP:
             output = softmax(output, axis=1)
         return output
 
-    def fit(self, X, y, check_test_statistic: bool = False, X_test=None, y_test=None):
+    def fit(self, X, y, check_test_statistic: bool = False, X_test=None, y_test=None, scale_for_mutation=0.1):
         """
         Fit the MLP model to the training data.
 
@@ -92,7 +92,7 @@ class MLP:
             layer_index = np.random.randint(0, len(self._weights), size=1)[0]
             feature_index = np.random.randint(0, len(self._weights[layer_index]), size=1)[0]
             neuron_index = np.random.randint(0, len(self._weights[layer_index][feature_index]), size=1)[0]
-            value_of_mutation = np.random.normal(scale=0.1)
+            value_of_mutation = np.random.normal(scale=scale_for_mutation)
             self._weights[layer_index][feature_index, neuron_index] += value_of_mutation
             current_loss = log_loss(y, self._eval_model(X))
             # Check if mutation improved the loss

@@ -15,7 +15,7 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test):
     """
     # Initialize and run the genetic algorithm model
     model = GeneticAlgorithmModel(X_train_pca, y_train, X_test_pca, y_test, 9)
-    champion, train_losses, test_losses, time_list = model.run(lambd=2, max_generations=500)
+    champion, train_losses, test_losses, time_list = model.run(lambd=2, max_generations=500, save_checkpoint_path="./")
 
     print("(1 + lambda) - EA with GP:")
     # Plot the evolution of training and testing losses over generations

@@ -15,8 +15,8 @@ def run_mlp_with_ga(X_train, X_test, y_train, y_test):
     y_test (numpy array): Target labels for the test data.
     """
     # Initialize and train the MLP model
-    model = MLP(hidden_layer_sizes=(X_train.shape[1], 10, 15, 20, 15, 10, 1), max_iter=30000)
-    model.fit(X_train, y_train, check_test_statistic=True, X_test=X_test, y_test=y_test)
+    model = MLP(hidden_layer_sizes=(X_train.shape[1], 10, 15, 20, 15, 10, 1), max_iter=15000)
+    model.fit(X_train, y_train, check_test_statistic=True, X_test=X_test, y_test=y_test, scale_for_mutation=0.5)
 
     print("MLP with GA:")
     # Plot training and test loss history

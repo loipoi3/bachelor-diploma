@@ -24,7 +24,7 @@ class GeneticAlgorithmModel:
         toolbox (base.Toolbox): DEAP Toolbox with genetic operators.
     """
 
-    def __init__(self, X_train, y_train, X_test, y_test, tree_depth, num_classes=1):
+    def __init__(self, X_train, y_train, X_test, y_test, tree_depth, primitive_set, terminal_set, num_classes=1):
         """
         Initializes the genetic algorithm model with training and test data.
 
@@ -40,12 +40,18 @@ class GeneticAlgorithmModel:
         self.y_test = y_test
         self.tree_depth = tree_depth
         self._num_classes = num_classes
+        self._primitive_set = primitive_set
+        self._terminal_set = terminal_set
 
         # Define a primitive set for symbolic regression with the number of input variables equal to X_train columns
         self.pset = gp.PrimitiveSet("MAIN", X_train.shape[1])
         self._setup_primitives()
 
+        if hasattr(creator, 'FitnessMin'):
+            del creator.FitnessMin
         creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
+        if hasattr(creator, 'Individual'):
+            del creator.Individual
         creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMin)
 
         self.toolbox = base.Toolbox()
@@ -53,17 +59,44 @@ class GeneticAlgorithmModel:
 
     def _setup_primitives(self):
         """Adds basic arithmetic and mathematical operations to the primitive set."""
-        self.pset.addPrimitive(operator.add, 2)
-        self.pset.addPrimitive(operator.sub, 2)
-        self.pset.addPrimitive(operator.mul, 2)
-        self.pset.addPrimitive(self._safe_div, 2)
-        self.pset.addPrimitive(min, 2)
-        self.pset.addPrimitive(max, 2)
-        self.pset.addPrimitive(math.hypot, 2)
-        self.pset.addPrimitive(np.logaddexp, 2)
-        self.pset.addTerminal(0, "Constant_0")
-        self.pset.addTerminal(1, "Constant_1")
-        self.pset.addTerminal(-1, "Constant_minus_1")
+        if "add" in self._primitive_set:
+            self.pset.addPrimitive(operator.add, 2)
+        if "sub" in self._primitive_set:
+            self.pset.addPrimitive(operator.sub, 2)
+        if "mul" in self._primitive_set:
+            self.pset.addPrimitive(operator.mul, 2)
+        if "_safe_div" in self._primitive_set:
+            self.pset.addPrimitive(self._safe_div, 2)
+        if "min" in self._primitive_set:
+            self.pset.addPrimitive(min, 2)
+        if "max" in self._primitive_set:
+            self.pset.addPrimitive(max, 2)
+        if "hypot" in self._primitive_set:
+            self.pset.addPrimitive(math.hypot, 2)
+        if "logaddexp" in self._primitive_set:
+            self.pset.addPrimitive(np.logaddexp, 2)
+        if "_safe_atan2" in self._primitive_set:
+            self.pset.addPrimitive(self._safe_atan2, 2)
+        if "_float_lt" in self._primitive_set:
+            self.pset.addPrimitive(self._float_lt, 2)
+        if "_float_gt" in self._primitive_set:
+            self.pset.addPrimitive(self._float_gt, 2)
+        if "_float_ge" in self._primitive_set:
+            self.pset.addPrimitive(self._float_ge, 2)
+        if "_float_le" in self._primitive_set:
+            self.pset.addPrimitive(self._float_le, 2)
+        if "_safe_fmod" in self._primitive_set:
+            self.pset.addPrimitive(self._safe_fmod, 2)
+        if "Constant_0" in self._terminal_set:
+            self.pset.addTerminal(0, "Constant_0")
+        if "Constant_1" in self._terminal_set:
+            self.pset.addTerminal(1, "Constant_1")
+        if "Constant_minus_1" in self._terminal_set:
+            self.pset.addTerminal(-1, "Constant_minus_1")
+        if "Pi" in self._terminal_set:
+            self.pset.addTerminal(math.pi, "Pi")
+        if "E" in self._terminal_set:
+            self.pset.addTerminal(math.e, "E")
 
     def _setup_toolbox(self):
         """Sets up the DEAP toolbox for genetic programming."""
@@ -76,8 +109,36 @@ class GeneticAlgorithmModel:
         self.toolbox.register("mutate", gp.mutNodeReplacement, pset=self.pset)
 
     def _safe_div(self, x, y):
-        """Performs safe division to prevent division by zero."""
-        return x / y if y != 0 else 1
+        """Performs safe division to prevent division by zero and handle overflow."""
+        with np.errstate(divide='ignore', over='ignore', invalid='ignore'):
+            result = np.divide(x, y)
+            if np.isnan(result) or np.isinf(result):
+                return 1  # or another appropriate value depending on your application needs
+            return result
+
+    def _safe_atan2(self, y, x):
+        # Check for the special case where both inputs are zero
+        if y == 0 and x == 0:
+            return 1  # Return a small non-zero angle in radians instead of zero
+        # Normal operation
+        return math.atan2(y, x)
+
+    def _float_lt(self, a, b):
+        return 1.0 if operator.lt(a, b) else 0.0
+
+    def _float_gt(self, a, b):
+        return 1.0 if operator.gt(a, b) else 0.0
+
+    def _float_ge(self, a, b):
+        return 1.0 if operator.ge(a, b) else 0.0
+
+    def _float_le(self, a, b):
+        return 1.0 if operator.le(a, b) else 0.0
+
+    def _safe_fmod(self, x, y):
+        if y == 0:
+            return 1.0  # Provide a sensible default, or handle the error as needed
+        return math.fmod(x, y)
 
     def _sigmoid(self, x):
         """Applies the sigmoid function to clip and transform input to a range between 0 and 1."""
@@ -98,7 +159,9 @@ class GeneticAlgorithmModel:
         """
         if self._num_classes == 1:
             func = self.toolbox.compile(expr=individual)
-            predictions = np.array([self._sigmoid(func(*record)) for record in X])
+            vectorized_func = np.vectorize(func)
+            predictions = self._sigmoid(vectorized_func(*np.hsplit(X, X.shape[1])))
+            # predictions = np.array([self._sigmoid(func(*record)) for record in X])
         else:
             funcs = [self.toolbox.compile(expr=tree) for tree in individual["ind"]]
             predictions = np.array([[func(*record) for func in funcs] for record in X])
@@ -106,7 +169,7 @@ class GeneticAlgorithmModel:
         return log_loss(y, predictions),
 
     def run(self, lambd: int, max_generations: int, save_checkpoint_path, start_checkpoint: str = "",
-            save_checkpoint: bool = False) -> tuple:
+            save_checkpoint: bool = False, mlp_time=0) -> tuple:
         """
         Executes the genetic algorithm.
 
@@ -138,8 +201,9 @@ class GeneticAlgorithmModel:
 
             start_generation = 0
 
-        for gen in range(start_generation, max_generations):
-            print(gen)
+        # for gen in range(start_generation, max_generations):
+            # print(gen)
+        while sum(time_list) < mlp_time:
             start_time = time.time()
             if self._num_classes == 1:
                 candidates = [self.toolbox.clone(champion) for _ in range(1 + lambd)]
