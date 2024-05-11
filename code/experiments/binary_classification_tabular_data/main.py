@@ -95,6 +95,6 @@ if __name__ == "__main__":
     # Run the different ML model pipelines with the processed data
     res_time = run_classic_mlp(X_train_scaled, X_test_scaled, y_train, y_test)
     print()
-    # run_mlp_with_ga(X_train_scaled, X_test_scaled, y_train, y_test)
-    # print()
+    run_mlp_with_ga(X_train_scaled, X_test_scaled, y_train, y_test)
+    print()
     run_one_plus_lambda_ea_with_gp(X_train_scaled, X_test_scaled, y_train, y_test, res_time)

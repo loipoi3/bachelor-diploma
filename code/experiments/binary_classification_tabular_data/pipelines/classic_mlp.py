@@ -63,5 +63,4 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
         print(f"Threshold={th:.2f}, Accuracy={accuracy_lst[index][0]:.4f}, "
               f"Precision={precision_lst[index][0]:.4f}, Recall={recall_lst[index][0]:.4f}, "
               f"F1-score={f1_lst[index][0]:.4f}")
-
     return res_time

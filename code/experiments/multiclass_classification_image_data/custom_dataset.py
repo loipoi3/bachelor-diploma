@@ -1,45 +1,35 @@
-from PIL import Image
 from torch.utils.data import Dataset
-from pathlib import Path
+import os
+import torchvision.transforms as transforms
+from torchvision.transforms import v2
+from torchvision.io import read_image
+import torch
 
 
-class MulticlassImageDataset(Dataset):
-    """
-    A dataset class for loading and transforming images for model training or testing.
-
-    Attributes:
-        class_to_idx (dict): A mapping from class names to integer labels.
-        ...
-    """
-
-    def __init__(self, root_dir, transform=None):
-        """
-        Initializes the dataset object for multiclass classification, listing all image
-        files and storing the transformation function provided.
-        """
-        self.root_dir = Path(root_dir)
-        self.transform = transform
-        self.images = [p for p in self.root_dir.glob('**/*') if p.suffix.lower() in ['.jpg', '.jpeg', '.png']]
-
-        # Automatically build a mapping from class names to integers
-        self.class_to_idx = {cls.name: idx for idx, cls in enumerate(sorted(self.root_dir.iterdir()))}
+class ChestXRayDataset(Dataset):
+    def __init__(self, dataset_type):
+        self.paths_labels = []
+        prefix = "datasets/chest_xray/" + dataset_type + "/"
+        for item in os.listdir(prefix):
+            for img_path in os.listdir(prefix + item):
+                if 'bacteria' in img_path:
+                    label = 1
+                elif 'virus' in img_path:
+                    label = 2
+                else:
+                    label = 0
+                self.paths_labels.append((prefix + item + "/" + img_path, label))
+        self.size = len(self.paths_labels)
+        self.train = False
 
     def __len__(self):
-        """
-        Returns the number of images in the dataset.
-
-        Returns:
-            int: The total number of images.
-        """
-        return len(self.images)
+        return self.size
 
     def __getitem__(self, idx):
-        image_path = self.images[idx]
-        image = Image.open(image_path).convert('RGB')
-
-        if self.transform:
-            image = self.transform(image)
-
-        # Here we read the class name and translate it to a numeric label
-        label = self.class_to_idx[image_path.parent.name]
-        return image, label
+        img_path, label = self.paths_labels[idx]
+        feature = read_image(img_path)
+        label = torch.tensor(label, dtype=torch.long)
+        feature = transforms.Resize((224, 224), antialias=True)(feature)
+        feature = v2.Grayscale()(feature)
+        feature = feature / 255.
+        return feature, label

@@ -15,7 +15,7 @@ def run_mlp_with_ga(X_train_pca, X_test_pca, y_train, y_test):
     y_test (numpy array): Target labels for the test data.
     """
     # Initialize and train the MLP model
-    model = MLP(hidden_layer_sizes=(X_train_pca.shape[1], 1), max_iter=30000)
+    model = MLP(hidden_layer_sizes=(X_train_pca.shape[1], 15, 20, 15, 1), max_iter=5000)
     model.fit(X_train_pca, y_train, check_test_statistic=True, X_test=X_test_pca, y_test=y_test)
 
     print("MLP with GA:")

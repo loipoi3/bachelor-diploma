@@ -15,11 +15,11 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
     y_test (numpy array): Test data labels.
     """
     # Initialize LogisticRegression model for iterative learning
-    mlp = MLPClassifier(hidden_layer_sizes=(), activation="logistic", solver="sgd", alpha=0.00018245304327849503,
-                        learning_rate_init=0.0015409633841540953, learning_rate="adaptive", batch_size=64,
-                        early_stopping=True, tol=7.717803388276812e-05, shuffle=False, max_iter=1, warm_start=True)
+    mlp = MLPClassifier(hidden_layer_sizes=(10, 10), activation="logistic", solver="sgd", alpha=0.00012710876052649163,
+                        learning_rate_init=0.0080252458565383933, learning_rate="adaptive", batch_size=64,
+                        early_stopping=True, tol=0.0002348954721998801, shuffle=False, max_iter=1, warm_start=True)
     train_log_losses, test_log_losses = [], []
-    n_iterations = 932
+    n_iterations = 734
     time_list = []
 
     # Perform training over a set number of iterations to gather loss data
@@ -52,7 +52,6 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
     f1_test = f1_score(y_test, y_pred_test, average='weighted')
     print(
         f"Accuracy: {accuracy_test:.4f}, Precision: {precision_test:.4f}, Recall: {recall_test:.4f}, F1-score: {f1_test:.4f}")
-
     return res_time
 
 # import optuna
@@ -92,7 +91,7 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
 #
 #     # Create a study object and specify the direction of the optimization
 #     study = optuna.create_study(direction='minimize')
-#     study.optimize(objective, n_trials=1000)
+#     study.optimize(objective, n_trials=10000)
 #
 #     # Print the result
 #     print('Best trial:')

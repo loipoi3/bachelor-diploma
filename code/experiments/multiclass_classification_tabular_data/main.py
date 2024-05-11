@@ -3,7 +3,6 @@ import numpy as np
 import warnings
 from sklearn.exceptions import ConvergenceWarning
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.decomposition import PCA
 from pipelines.mlp_with_ga import run_mlp_with_ga
 from pipelines.classic_mlp import run_classic_mlp
 from pipelines.one_plus_lambda_ea_with_gp import run_one_plus_lambda_ea_with_gp
@@ -48,14 +47,9 @@ if __name__ == "__main__":
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    # Reduce dimensionality using PCA to retain 95% of variance
-    pca = PCA(n_components=0.99)
-    X_train_pca = pca.fit_transform(X_train_scaled)
-    X_test_pca = pca.transform(X_test_scaled)
-
     # Run the different ML model pipelines with the processed data
-    res_time = run_classic_mlp(X_train_pca, X_test_pca, y_train, y_test)
+    # res_time = run_classic_mlp(X_train_scaled, X_test_scaled, y_train, y_test)
     # print()
-    # run_mlp_with_ga(X_train_pca, X_test_pca, y_train, y_test)
+    # run_mlp_with_ga(X_train_scaled, X_test_scaled, y_train, y_test)
     # print()
-    run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, res_time)
+    run_one_plus_lambda_ea_with_gp(X_train_scaled, X_test_scaled, y_train, y_test, 1)

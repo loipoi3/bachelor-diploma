@@ -4,6 +4,8 @@ datasets/
 tex_file/
 checkpoints/
 resnet-34/
+saved_model.pth
+ФІ-02_Харь_ДФ_щоденник.docx
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

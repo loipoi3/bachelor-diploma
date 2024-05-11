@@ -159,9 +159,9 @@ class GeneticAlgorithmModel:
         """
         if self._num_classes == 1:
             func = self.toolbox.compile(expr=individual)
-            vectorized_func = np.vectorize(func)
-            predictions = self._sigmoid(vectorized_func(*np.hsplit(X, X.shape[1])))
-            # predictions = np.array([self._sigmoid(func(*record)) for record in X])
+            # vectorized_func = np.vectorize(func)
+            # predictions = self._sigmoid(vectorized_func(*np.hsplit(X, X.shape[1])))
+            predictions = np.array([self._sigmoid(func(*record)) for record in X])
         else:
             funcs = [self.toolbox.compile(expr=tree) for tree in individual["ind"]]
             predictions = np.array([[func(*record) for func in funcs] for record in X])
@@ -201,9 +201,9 @@ class GeneticAlgorithmModel:
 
             start_generation = 0
 
-        # for gen in range(start_generation, max_generations):
-            # print(gen)
-        while sum(time_list) < mlp_time:
+        for gen in range(start_generation, max_generations):
+            print(gen)
+        # while sum(time_list) < mlp_time:
             start_time = time.time()
             if self._num_classes == 1:
                 candidates = [self.toolbox.clone(champion) for _ in range(1 + lambd)]
@@ -263,7 +263,7 @@ class GeneticAlgorithmModel:
             predictions = self._sigmoid(predictions_raw)
             return (predictions > threshold).astype(int)
         else:
-            funcs = [self.toolbox.compile(expr=tree) for tree in individual]
+            funcs = [self.toolbox.compile(expr=tree) for tree in individual["ind"]]
             predictions_raw = np.array([[func(*record) for func in funcs] for record in X])
             predictions = softmax(predictions_raw, axis=1)
             return np.argmax(predictions, axis=1)

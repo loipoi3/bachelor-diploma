@@ -1,0 +1,201 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{ct3}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=8a0687ba781c67580710a6d7f321aac3}{%
+           family={Fang},
+           familyi={F\bibinitperiod},
+           given={Yongsheng},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=be76cc496cb2ac3060c9588c47c1d69d}{%
+           family={li},
+           familyi={l\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{28e7b064d7300acea2b74b9185ffaacb}
+      \strng{fullhash}{28e7b064d7300acea2b74b9185ffaacb}
+      \strng{bibnamehash}{28e7b064d7300acea2b74b9185ffaacb}
+      \strng{authorbibnamehash}{28e7b064d7300acea2b74b9185ffaacb}
+      \strng{authornamehash}{28e7b064d7300acea2b74b9185ffaacb}
+      \strng{authorfullhash}{28e7b064d7300acea2b74b9185ffaacb}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-642-16492-7}
+      \field{month}{10}
+      \field{title}{A Review of Tournament Selection in Genetic Programming}
+      \field{year}{2010}
+      \field{pages}{181\bibrangedash 192}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1007/978-3-642-16493-4_19
+      \endverb
+    \endentry
+    \entry{ct4}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=f1ef1cc4017c4994bca001e1c9793a9c}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Gongde},
+           giveni={G\bibinitperiod}}}%
+        {{hash=a753993c6afc6bfea114ea4114b2e619}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod}}}%
+        {{hash=4edb28bbe86173db7bb183166e5a4a0a}{%
+           family={Bell},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b6959e3ba8aa8ae19fa07aabd9efd904}{%
+           family={Bi},
+           familyi={B\bibinitperiod},
+           given={Yaxin},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=9b300bd187cdfcaddc17f85227f757cc}{%
+           family={Greer},
+           familyi={G\bibinitperiod},
+           given={Kieran},
+           giveni={K\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=6b837cda52ad149715262c940fe24eb3}{%
+           family={Meersman},
+           familyi={M\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=93b729da8f44b1e0e9192ab368db96d3}{%
+           family={Tari},
+           familyi={T\bibinitperiod},
+           given={Zahir},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=45ce9ca7bea6c6c26f4b9dedf96373a8}{%
+           family={Schmidt},
+           familyi={S\bibinitperiod},
+           given={Douglas\bibnamedelima C.},
+           giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{fullhash}{694a479e08f73698a600a242137e5e90}
+      \strng{bibnamehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{authorbibnamehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{authornamehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{authorfullhash}{694a479e08f73698a600a242137e5e90}
+      \strng{editorbibnamehash}{8818adb509f50381b567f5a603ad861c}
+      \strng{editornamehash}{8818adb509f50381b567f5a603ad861c}
+      \strng{editorfullhash}{8818adb509f50381b567f5a603ad861c}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The k-Nearest-Neighbours (kNN) is a simple but effective method for classification. The major drawbacks with respect to kNN are (1) its low efficiency -- being a lazy learning method prohibits it in many applications such as dynamic web mining for a large repository, and (2) its dependency on the selection of a ``good value'' for k. In this paper, we propose a novel kNN type method for classification that is aimed at overcoming these shortcomings. Our method constructs a kNN model for the data, which replaces the data to serve as the basis of classification. The value of k is automatically determined, is varied for different data, and is optimal in terms of classification accuracy. The construction of the model reduces the dependency on k and makes classification faster. Experiments were carried out on some public datasets collected from the UCI machine learning repository in order to test our method. The experimental results show that the kNN based model compares well with C5.0 and kNN in terms of classification accuracy, but is more efficient than the standard kNN.}
+      \field{booktitle}{On The Move to Meaningful Internet Systems 2003: CoopIS, DOA, and ODBASE}
+      \field{isbn}{978-3-540-39964-3}
+      \field{title}{KNN Model-Based Approach in Classification}
+      \field{year}{2003}
+      \field{pages}{986\bibrangedash 996}
+      \range{pages}{11}
+    \endentry
+    \entry{ct2}{article}{}
+      \name{author}{2}{}{%
+        {{hash=060c06ba4c2fd7552b2add1f9457a732}{%
+           family={Lipowski},
+           familyi={L\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8c9325450cd814d8219b2289c2ab90fc}{%
+           family={Lipowska},
+           familyi={L\bibinitperiod},
+           given={Dorota},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{22d7dcaf52ae8f085c6483c1eb26106b}
+      \strng{fullhash}{22d7dcaf52ae8f085c6483c1eb26106b}
+      \strng{bibnamehash}{22d7dcaf52ae8f085c6483c1eb26106b}
+      \strng{authorbibnamehash}{22d7dcaf52ae8f085c6483c1eb26106b}
+      \strng{authornamehash}{22d7dcaf52ae8f085c6483c1eb26106b}
+      \strng{authorfullhash}{22d7dcaf52ae8f085c6483c1eb26106b}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physica A: Statistical Mechanics and its Applications}
+      \field{month}{09}
+      \field{title}{Roulette-wheel selection via stochastic acceptance}
+      \field{volume}{391}
+      \field{year}{2011}
+      \verb{doi}
+      \verb 10.1016/j.physa.2011.12.004
+      \endverb
+    \endentry
+    \entry{ct1}{article}{}
+      \name{author}{3}{}{%
+        {{hash=67253466dddb9db3b783dfa57985dceb}{%
+           family={Peng},
+           familyi={P\bibinitperiod},
+           given={Joanne},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4625aa5349bad6ff33bcd14676ccb109}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Kuk},
+           giveni={K\bibinitperiod}}}%
+        {{hash=4313e2a19080b54a16cea712a5563308}{%
+           family={Ingersoll},
+           familyi={I\bibinitperiod},
+           given={Gary},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{6adc7047feb0e8dadc28d29b950175aa}
+      \strng{fullhash}{6adc7047feb0e8dadc28d29b950175aa}
+      \strng{bibnamehash}{6adc7047feb0e8dadc28d29b950175aa}
+      \strng{authorbibnamehash}{6adc7047feb0e8dadc28d29b950175aa}
+      \strng{authornamehash}{6adc7047feb0e8dadc28d29b950175aa}
+      \strng{authorfullhash}{6adc7047feb0e8dadc28d29b950175aa}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Educational Research - J EDUC RES}
+      \field{month}{09}
+      \field{title}{An Introduction to Logistic Regression Analysis and Reporting}
+      \field{volume}{96}
+      \field{year}{2002}
+      \field{pages}{3\bibrangedash 14}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1080/00220670209598786
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
