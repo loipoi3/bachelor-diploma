@@ -19,6 +19,87 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{ct17}{article}{}
+      \name{author}{2}{}{%
+        {{hash=37c490c13915537add20873c1795b302}{%
+           family={anaN},
+           familyi={a\bibinitperiod},
+           given={N.Sarav},
+           giveni={N\bibinitperiod}}}%
+        {{hash=9f40c9e9a03ab9195eb7e72371989860}{%
+           family={thri},
+           familyi={t\bibinitperiod},
+           given={V.Gaya},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{5692448cc1ff7106426c23cc921c4782}
+      \strng{fullhash}{5692448cc1ff7106426c23cc921c4782}
+      \strng{bibnamehash}{5692448cc1ff7106426c23cc921c4782}
+      \strng{authorbibnamehash}{5692448cc1ff7106426c23cc921c4782}
+      \strng{authornamehash}{5692448cc1ff7106426c23cc921c4782}
+      \strng{authorfullhash}{5692448cc1ff7106426c23cc921c4782}
+      \field{sortinit}{a}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Computer Trends and Technology}
+      \field{title}{Performance and Classification Evaluation of J48 Algorithm and Kendall’s Based J48 Algorithm (KNJ48)}
+      \field{volume}{59}
+      \field{year}{2018}
+      \field{pages}{73\bibrangedash 80}
+      \range{pages}{8}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:69700602
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:69700602
+      \endverb
+    \endentry
+    \entry{ct5}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=379c6d4cd06268eb77c5dd2ab84ba64b}{%
+           family={Durillo},
+           familyi={D\bibinitperiod},
+           given={Juan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=11b25f2a124c819a13f8b8103cf36078}{%
+           family={Nebro},
+           familyi={N\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a4176f6a8f5bb2e2fd0f3f468899dfb4}{%
+           family={Luna},
+           familyi={L\bibinitperiod},
+           given={Francisco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=3bba57c9b13d5773e34ff8bf341727f7}{%
+           family={Alba},
+           familyi={A\bibinitperiod},
+           given={Enrique},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{63ceb433b920561abf15ea530c214209}
+      \strng{fullhash}{b469a89ae755ed2e9c22bb84645953e6}
+      \strng{bibnamehash}{63ceb433b920561abf15ea530c214209}
+      \strng{authorbibnamehash}{63ceb433b920561abf15ea530c214209}
+      \strng{authornamehash}{63ceb433b920561abf15ea530c214209}
+      \strng{authorfullhash}{b469a89ae755ed2e9c22bb84645953e6}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-642-01019-4}
+      \field{journaltitle}{LNCS}
+      \field{month}{04}
+      \field{title}{On the Effect of the Steady-State Selection Scheme in Multi-Objective Genetic Algorithms}
+      \field{volume}{5467}
+      \field{year}{2009}
+      \field{pages}{183\bibrangedash 197}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1007/978-3-642-01020-0_18
+      \endverb
+    \endentry
     \entry{ct3}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=8a0687ba781c67580710a6d7f321aac3}{%
@@ -112,6 +193,7 @@
       \strng{editorbibnamehash}{8818adb509f50381b567f5a603ad861c}
       \strng{editornamehash}{8818adb509f50381b567f5a603ad861c}
       \strng{editorfullhash}{8818adb509f50381b567f5a603ad861c}
+      \field{extraname}{1}
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{labelnamesource}{author}
@@ -123,6 +205,108 @@
       \field{year}{2003}
       \field{pages}{986\bibrangedash 996}
       \range{pages}{11}
+    \endentry
+    \entry{ct13}{article}{}
+      \name{author}{4}{}{%
+        {{hash=f1ef1cc4017c4994bca001e1c9793a9c}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Gongde},
+           giveni={G\bibinitperiod}}}%
+        {{hash=a753993c6afc6bfea114ea4114b2e619}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod}}}%
+        {{hash=4edb28bbe86173db7bb183166e5a4a0a}{%
+           family={Bell},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b6959e3ba8aa8ae19fa07aabd9efd904}{%
+           family={Bi},
+           familyi={B\bibinitperiod},
+           given={Yaxin},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{fullhash}{586f6f603cd1c7bdc7d8fdccc96adaff}
+      \strng{bibnamehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{authorbibnamehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{authornamehash}{248d63f573e8edf6355f4d56d57745a5}
+      \strng{authorfullhash}{586f6f603cd1c7bdc7d8fdccc96adaff}
+      \field{extraname}{2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{08}
+      \field{title}{KNN Model-Based Approach in Classification}
+      \field{year}{2004}
+    \endentry
+    \entry{ct12}{book}{}
+      \name{author}{2}{}{%
+        {{hash=f6ff57edb113a35e2f03e720fe370520}{%
+           family={Hosmer},
+           familyi={H\bibinitperiod},
+           given={D.W.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b74e399f79f93a67ec4e2dd129ca1e63}{%
+           family={Lemeshow},
+           familyi={L\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{f72b9e262726efbe01b12ff92aa7062a}
+      \strng{fullhash}{f72b9e262726efbe01b12ff92aa7062a}
+      \strng{bibnamehash}{f72b9e262726efbe01b12ff92aa7062a}
+      \strng{authorbibnamehash}{f72b9e262726efbe01b12ff92aa7062a}
+      \strng{authornamehash}{f72b9e262726efbe01b12ff92aa7062a}
+      \strng{authorfullhash}{f72b9e262726efbe01b12ff92aa7062a}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780471654025}
+      \field{series}{Applied Logistic Regression}
+      \field{title}{Applied Logistic Regression}
+      \field{year}{2004}
+      \verb{urlraw}
+      \verb https://books.google.com.ua/books?id=Po0RLQ7USIMC
+      \endverb
+      \verb{url}
+      \verb https://books.google.com.ua/books?id=Po0RLQ7USIMC
+      \endverb
+    \endentry
+    \entry{ct9}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b6fbd171848aad4edf3925543f1f1522}{%
+           family={Kingma},
+           familyi={K\bibinitperiod},
+           given={Diederik\bibnamedelima P},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=8aa66e8231cc2fdbe67aa4f18ca970c6}{%
+           family={Ba},
+           familyi={B\bibinitperiod},
+           given={Jimmy},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{fullhash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{bibnamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorbibnamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authornamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorfullhash}{a09df9f123146b8e2c7f1134c9496932}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1412.6980}
+      \field{title}{Adam: A method for stochastic optimization}
+      \field{year}{2014}
     \endentry
     \entry{ct2}{article}{}
       \name{author}{2}{}{%
@@ -154,6 +338,45 @@
       \field{year}{2011}
       \verb{doi}
       \verb 10.1016/j.physa.2011.12.004
+      \endverb
+    \endentry
+    \entry{ct6}{article}{}
+      \name{author}{3}{}{%
+        {{hash=21d7de5225d6a624215a6eaf3ee70306}{%
+           family={Menditto},
+           familyi={M\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d507622c3502583daee14159339d5c77}{%
+           family={Patriarca},
+           familyi={P\bibinitperiod},
+           given={Marina},
+           giveni={M\bibinitperiod}}}%
+        {{hash=052ae4e44e9bb2bdc602c1d57bdbbc41}{%
+           family={Magnusson},
+           familyi={M\bibinitperiod},
+           given={Bertil},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{f42f28524db6b467eaa2eade826c8091}
+      \strng{fullhash}{f42f28524db6b467eaa2eade826c8091}
+      \strng{bibnamehash}{f42f28524db6b467eaa2eade826c8091}
+      \strng{authorbibnamehash}{f42f28524db6b467eaa2eade826c8091}
+      \strng{authornamehash}{f42f28524db6b467eaa2eade826c8091}
+      \strng{authorfullhash}{f42f28524db6b467eaa2eade826c8091}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Accreditation and Quality Assurance}
+      \field{month}{10}
+      \field{title}{Understanding the meaning of accuracy, trueness and precision}
+      \field{volume}{12}
+      \field{year}{2007}
+      \field{pages}{45\bibrangedash 47}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1007/s00769-006-0191-z
       \endverb
     \endentry
     \entry{ct1}{article}{}
@@ -193,6 +416,281 @@
       \range{pages}{12}
       \verb{doi}
       \verb 10.1080/00220670209598786
+      \endverb
+    \endentry
+    \entry{ct10}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=1747e08170a0c426ada009eaa77aac9e}{%
+           family={Poli},
+           familyi={P\bibinitperiod},
+           given={Riccardo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=bde4ad01f0d4e28d603ba61773b1eaa9}{%
+           family={Langdon},
+           familyi={L\bibinitperiod},
+           given={W.\bibnamedelimi B.},
+           giveni={W\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=b498b1431207485a2eb2eca5f560d420}{%
+           family={Chawdhry},
+           familyi={C\bibinitperiod},
+           given={P.\bibnamedelimi K.},
+           giveni={P\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=073e4c4da4563875eecc2b5c8f3e30b8}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=b3e22d30a6071c21a61e06aba06554b1}{%
+           family={Pant},
+           familyi={P\bibinitperiod},
+           given={R.\bibnamedelimi K.},
+           giveni={R\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {Springer London}%
+      }
+      \strng{namehash}{c5553aacbf2dfab1974eba9d22b0a016}
+      \strng{fullhash}{c5553aacbf2dfab1974eba9d22b0a016}
+      \strng{bibnamehash}{c5553aacbf2dfab1974eba9d22b0a016}
+      \strng{authorbibnamehash}{c5553aacbf2dfab1974eba9d22b0a016}
+      \strng{authornamehash}{c5553aacbf2dfab1974eba9d22b0a016}
+      \strng{authorfullhash}{c5553aacbf2dfab1974eba9d22b0a016}
+      \strng{editorbibnamehash}{162a3fa4d21b27899abf142c2aaaa3f4}
+      \strng{editornamehash}{162a3fa4d21b27899abf142c2aaaa3f4}
+      \strng{editorfullhash}{162a3fa4d21b27899abf142c2aaaa3f4}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Soft Computing in Engineering Design and Manufacturing}
+      \field{title}{Genetic Programming with One-Point Crossover}
+      \field{year}{1998}
+      \field{pages}{180\bibrangedash 189}
+      \range{pages}{10}
+    \endentry
+    \entry{ct7}{article}{}
+      \name{author}{2}{}{%
+        {{hash=27280dca01c9d89673cce4cc2e9e6233}{%
+           family={Powers},
+           familyi={P\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6618b7ced15ec863bde70bf3034cd0f7}{%
+           family={Ailab},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{cb1059157bfb04fe99016c080f9faef2}
+      \strng{fullhash}{cb1059157bfb04fe99016c080f9faef2}
+      \strng{bibnamehash}{cb1059157bfb04fe99016c080f9faef2}
+      \strng{authorbibnamehash}{cb1059157bfb04fe99016c080f9faef2}
+      \strng{authornamehash}{cb1059157bfb04fe99016c080f9faef2}
+      \strng{authorfullhash}{cb1059157bfb04fe99016c080f9faef2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{J. Mach. Learn. Technol}
+      \field{month}{01}
+      \field{title}{Evaluation: From precision, recall and F-measure to ROC, informedness, markedness and correlation}
+      \field{volume}{2}
+      \field{year}{2011}
+      \field{pages}{2229\bibrangedash 3981}
+      \range{pages}{1753}
+      \verb{doi}
+      \verb 10.9735/2229-3981
+      \endverb
+    \endentry
+    \entry{ct15}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=6bb123da9429addb672c28e96f85040d}{%
+           family={Robu},
+           familyi={R\bibinitperiod},
+           given={Raul},
+           giveni={R\bibinitperiod}}}%
+        {{hash=875cc2b28281dd9ad7639c7eb15caa05}{%
+           family={Stefan},
+           familyi={S\bibinitperiod},
+           given={Holban},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{5ce58803dbae8586650306832ff8b0b8}
+      \strng{fullhash}{5ce58803dbae8586650306832ff8b0b8}
+      \strng{bibnamehash}{5ce58803dbae8586650306832ff8b0b8}
+      \strng{authorbibnamehash}{5ce58803dbae8586650306832ff8b0b8}
+      \strng{authornamehash}{5ce58803dbae8586650306832ff8b0b8}
+      \strng{authorfullhash}{5ce58803dbae8586650306832ff8b0b8}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Recent Researches in Computers and Computing - International Conference on Computers and Computing, ICCC'11}
+      \field{month}{05}
+      \field{title}{A genetic algorithm for classification}
+      \field{year}{2011}
+      \field{pages}{52\bibrangedash 56}
+      \range{pages}{5}
+    \endentry
+    \entry{ct8}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=2adefbc8409f58c304df957e60c49341}{%
+           family={Sokolova},
+           familyi={S\bibinitperiod},
+           given={Marina},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1aa06e66630f0d8aaa52b4b4af7dce1b}{%
+           family={Japkowicz},
+           familyi={J\bibinitperiod},
+           given={Nathalie},
+           giveni={N\bibinitperiod}}}%
+        {{hash=66c69b578d153a872931f14e927c824e}{%
+           family={Szpakowicz},
+           familyi={S\bibinitperiod},
+           given={Stan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{95c5e56f75f48cf08529ab98dba7d83e}
+      \strng{fullhash}{95c5e56f75f48cf08529ab98dba7d83e}
+      \strng{bibnamehash}{95c5e56f75f48cf08529ab98dba7d83e}
+      \strng{authorbibnamehash}{95c5e56f75f48cf08529ab98dba7d83e}
+      \strng{authornamehash}{95c5e56f75f48cf08529ab98dba7d83e}
+      \strng{authorfullhash}{95c5e56f75f48cf08529ab98dba7d83e}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-540-49787-5}
+      \field{journaltitle}{AI 2006: Advances in Artificial Intelligence, Lecture Notes in Computer Science}
+      \field{month}{01}
+      \field{title}{Beyond Accuracy, F-Score and ROC: A Family of Discriminant Measures for Performance Evaluation}
+      \field{volume}{Vol. 4304}
+      \field{year}{2006}
+      \field{pages}{1015\bibrangedash 1021}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1007/11941439_114
+      \endverb
+    \endentry
+    \entry{ct14}{article}{}
+      \name{author}{2}{}{%
+        {{hash=88ebf1a9388c2ab91de8ea1aa01e5408}{%
+           family={Soliman},
+           familyi={S\bibinitperiod},
+           given={Tamer},
+           giveni={T\bibinitperiod}}}%
+        {{hash=2db87c73d164e8dca62008255495032f}{%
+           family={Abd-elaziem},
+           familyi={A\bibinithyphendelim e\bibinitperiod},
+           given={Ayman},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{a2b0dde146f2895d9c22dcd1d05f5b5b}
+      \strng{fullhash}{a2b0dde146f2895d9c22dcd1d05f5b5b}
+      \strng{bibnamehash}{a2b0dde146f2895d9c22dcd1d05f5b5b}
+      \strng{authorbibnamehash}{a2b0dde146f2895d9c22dcd1d05f5b5b}
+      \strng{authornamehash}{a2b0dde146f2895d9c22dcd1d05f5b5b}
+      \strng{authorfullhash}{a2b0dde146f2895d9c22dcd1d05f5b5b}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Advances in Applied Computational Intelligence}
+      \field{month}{08}
+      \field{title}{A Multi-Layer Perceptron (MLP) Neural Networks for Stellar Classification: A Review of Methods and Results}
+      \field{volume}{3}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.54216/IJAACI.030203
+      \endverb
+    \endentry
+    \entry{ct11}{incollection}{}
+      \name{author}{2}{}{%
+        {{hash=b75f3135d7f823a1fba5927b3ee30f4e}{%
+           family={Spears},
+           familyi={S\bibinitperiod},
+           given={William\bibnamedelima M.},
+           giveni={W\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=488081ba84e0d772b715ff542ece7806}{%
+           family={{De Jong}},
+           familyi={D\bibinitperiod},
+           given={Kenneth\bibnamedelima A.},
+           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=569a547b3cff7ea01e5a71fc4d763a2b}{%
+           family={RAWLINS},
+           familyi={R\bibinitperiod},
+           given={GREGORY\bibnamedelima J.E.},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{f6eb1e07071e1f69f554cb5b3f76e3d2}
+      \strng{fullhash}{f6eb1e07071e1f69f554cb5b3f76e3d2}
+      \strng{bibnamehash}{f6eb1e07071e1f69f554cb5b3f76e3d2}
+      \strng{authorbibnamehash}{f6eb1e07071e1f69f554cb5b3f76e3d2}
+      \strng{authornamehash}{f6eb1e07071e1f69f554cb5b3f76e3d2}
+      \strng{authorfullhash}{f6eb1e07071e1f69f554cb5b3f76e3d2}
+      \strng{editorbibnamehash}{569a547b3cff7ea01e5a71fc4d763a2b}
+      \strng{editornamehash}{569a547b3cff7ea01e5a71fc4d763a2b}
+      \strng{editorfullhash}{569a547b3cff7ea01e5a71fc4d763a2b}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1081-6593}
+      \field{series}{Foundations of Genetic Algorithms}
+      \field{title}{An Analysis of Multi-Point Crossover}
+      \field{volume}{1}
+      \field{year}{1991}
+      \field{pages}{301\bibrangedash 315}
+      \range{pages}{15}
+      \verb{doi}
+      \verb https://doi.org/10.1016/B978-0-08-050684-5.50022-7
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780080506845500227
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780080506845500227
+      \endverb
+    \endentry
+    \entry{ct16}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=ebfc82cd36b013a25998ff34ef0206ef}{%
+           family={Vikramkumar},
+           familyi={V\bibinitperiod}}}%
+        {{hash=4ca840486c9412939bb33a05f538a4b5}{%
+           family={Vijaykumar},
+           familyi={V\bibinitperiod},
+           given={B},
+           giveni={B\bibinitperiod}}}%
+        {{hash=97a7cec0676d973795785cd8f127d4fe}{%
+           family={Trilochan},
+           familyi={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{73f85fc2dd101cf22aed320731652980}
+      \strng{fullhash}{73f85fc2dd101cf22aed320731652980}
+      \strng{bibnamehash}{73f85fc2dd101cf22aed320731652980}
+      \strng{authorbibnamehash}{73f85fc2dd101cf22aed320731652980}
+      \strng{authornamehash}{73f85fc2dd101cf22aed320731652980}
+      \strng{authorfullhash}{73f85fc2dd101cf22aed320731652980}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Bayes and Naive Bayes Classifier}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:10272111
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:10272111
       \endverb
     \endentry
   \enddatalist
