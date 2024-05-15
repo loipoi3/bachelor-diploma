@@ -133,6 +133,52 @@
       \verb 10.1007/978-3-642-16493-4_19
       \endverb
     \endentry
+    \entry{ct19}{article}{}
+      \name{author}{5}{}{%
+        {{hash=cb726dd65ed70d42db90a71456f3ccfc}{%
+           family={Fortin},
+           familyi={F\bibinitperiod},
+           given={Félix-Antoine},
+           giveni={F\bibinithyphendelim A\bibinitperiod}}}%
+        {{hash=2a8d7a79b78f89e860083e3622125296}{%
+           family={{De Rainville}},
+           familyi={D\bibinitperiod},
+           given={François-Michel},
+           giveni={F\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=3ec3b044bed6d19168fae25d72ae8fd2}{%
+           family={Gardner},
+           familyi={G\bibinitperiod},
+           given={Marc-André},
+           giveni={M\bibinithyphendelim A\bibinitperiod}}}%
+        {{hash=4db4c30a39950c04076d8822a71150b3}{%
+           family={Parizeau},
+           familyi={P\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6cf428558c3d4908897307fde7e4f5f4}{%
+           family={Gagné},
+           familyi={G\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{2d86837c4e4b0d62a789893eba4aad52}
+      \strng{fullhash}{cd6bca8bf461ea2109725101ea33b021}
+      \strng{bibnamehash}{2d86837c4e4b0d62a789893eba4aad52}
+      \strng{authorbibnamehash}{2d86837c4e4b0d62a789893eba4aad52}
+      \strng{authornamehash}{2d86837c4e4b0d62a789893eba4aad52}
+      \strng{authorfullhash}{cd6bca8bf461ea2109725101ea33b021}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{month}{7}
+      \field{title}{{DEAP}: Evolutionary Algorithms Made Easy}
+      \field{volume}{13}
+      \field{year}{2012}
+      \field{pages}{2171\bibrangedash 2175}
+      \range{pages}{5}
+    \endentry
     \entry{ct4}{inproceedings}{}
       \name{author}{5}{}{%
         {{hash=f1ef1cc4017c4994bca001e1c9793a9c}{%
@@ -660,6 +706,39 @@
       \verb https://www.sciencedirect.com/science/article/pii/B9780080506845500227
       \endverb
     \endentry
+    \entry{ct18}{book}{}
+      \name{author}{2}{}{%
+        {{hash=e504145eff12cd8803c227c919ccfacd}{%
+           family={Van\bibnamedelima Rossum},
+           familyi={V\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={Guido},
+           giveni={G\bibinitperiod}}}%
+        {{hash=0b735fb6ad359aa95b3bac4d5567af6f}{%
+           family={Drake},
+           familyi={D\bibinitperiod},
+           given={Fred\bibnamedelima L.},
+           giveni={F\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Scotts Valley, CA}%
+      }
+      \list{publisher}{1}{%
+        {CreateSpace}%
+      }
+      \strng{namehash}{190e2e6e0d73bf5671d8927d221674e7}
+      \strng{fullhash}{190e2e6e0d73bf5671d8927d221674e7}
+      \strng{bibnamehash}{190e2e6e0d73bf5671d8927d221674e7}
+      \strng{authorbibnamehash}{190e2e6e0d73bf5671d8927d221674e7}
+      \strng{authornamehash}{190e2e6e0d73bf5671d8927d221674e7}
+      \strng{authorfullhash}{190e2e6e0d73bf5671d8927d221674e7}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{1441412697}
+      \field{title}{Python 3 Reference Manual}
+      \field{year}{2009}
+    \endentry
     \entry{ct16}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=ebfc82cd36b013a25998ff34ef0206ef}{%
@@ -694,6 +773,7 @@
       \endverb
     \endentry
   \enddatalist
+  \missing{20}
 \endrefsection
 \endinput
 

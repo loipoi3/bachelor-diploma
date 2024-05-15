@@ -8,11 +8,11 @@
 \contentsline {section}{\numberline {1.4}Процес навчання моделей для задач класифікації}{16}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Огляд суміжних робіт}{18}{section.1.5}%
 \contentsline {section}{Висновки до розділу \ref {chap:review}}{22}{section.1.5}%
-\contentsline {chapter}{\numberline {2}(Назва другого розділу)}{23}{chapter.2}%
-\contentsline {section}{\numberline {2.1}(Якийсь підрозділ)}{23}{section.2.1}%
-\contentsline {section}{\numberline {2.2}(Якийсь наступний підрозділ з дуже-дуже довгою назвою, загальна кількість слів в якій, однак, не повинна перевищувати 12 слів)}{24}{section.2.2}%
-\contentsline {section}{Висновки до розділу \ref {chap:theory}}{25}{figure.caption.11}%
-\contentsline {chapter}{\numberline {3}(Назва третього розділу)}{26}{chapter.3}%
-\contentsline {section}{\numberline {3.1}(якийсь підрозділ)}{26}{section.3.1}%
-\contentsline {section}{Висновки до розділу \ref {chap:practice}}{27}{section.3.1}%
-\contentsline {chapter}{Висновки}{28}{chapter*.12}%
+\contentsline {chapter}{\numberline {2}Підготовка до проведення дослідження}{23}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Використані інструменти та ресурси}{23}{section.2.1}%
+\contentsline {section}{\numberline {2.2}(Якийсь наступний підрозділ з дуже-дуже довгою назвою, загальна кількість слів в якій, однак, не повинна перевищувати 12 слів)}{25}{section.2.2}%
+\contentsline {section}{Висновки до розділу \ref {chap:theory}}{26}{figure.caption.10}%
+\contentsline {chapter}{\numberline {3}(Назва третього розділу)}{27}{chapter.3}%
+\contentsline {section}{\numberline {3.1}(якийсь підрозділ)}{27}{section.3.1}%
+\contentsline {section}{Висновки до розділу \ref {chap:practice}}{28}{section.3.1}%
+\contentsline {chapter}{Висновки}{29}{chapter*.11}%
