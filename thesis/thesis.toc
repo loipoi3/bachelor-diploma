@@ -10,9 +10,10 @@
 \contentsline {section}{Висновки до розділу \ref {chap:review}}{22}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Підготовка до проведення дослідження}{23}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Використані інструменти та ресурси}{23}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Попередня обробка даних}{25}{section.2.2}%
-\contentsline {section}{Висновки до розділу \ref {chap:theory}}{26}{section.2.2}%
-\contentsline {chapter}{\numberline {3}(Назва третього розділу)}{27}{chapter.3}%
-\contentsline {section}{\numberline {3.1}(якийсь підрозділ)}{27}{section.3.1}%
-\contentsline {section}{Висновки до розділу \ref {chap:practice}}{28}{section.3.1}%
-\contentsline {chapter}{Висновки}{29}{chapter*.9}%
+\contentsline {section}{\numberline {2.2}Опис використаних наборів даних}{25}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Вплив Expressive Encodings на ефективність класифікаційних алгоритмів}{27}{section.2.3}%
+\contentsline {section}{Висновки до розділу \ref {chap:theory}}{28}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Попередня обробка даних, побудова моделей та оцінка методів}{30}{chapter.3}%
+\contentsline {section}{\numberline {3.1}(якийсь підрозділ)}{30}{section.3.1}%
+\contentsline {section}{Висновки до розділу \ref {chap:practice}}{31}{section.3.1}%
+\contentsline {chapter}{Висновки}{32}{chapter*.9}%

@@ -496,6 +496,40 @@
       \verb 10.1007/s00769-006-0191-z
       \endverb
     \endentry
+    \entry{ct25}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=b3dd11e9d67e706e42c999b4bdcef69c}{%
+           family={Meyerson},
+           familyi={M\bibinitperiod},
+           given={Elliot},
+           giveni={E\bibinitperiod}}}%
+        {{hash=b041b98d0bece81a2c112ba5ae8e4ffd}{%
+           family={Qiu},
+           familyi={Q\bibinitperiod},
+           given={Xin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=70ad9af6f97993f2ea5c1f65e1985520}{%
+           family={Miikkulainen},
+           familyi={M\bibinitperiod},
+           given={Risto},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{9813e90bd44776bc6f03c4484606eac6}
+      \strng{fullhash}{9813e90bd44776bc6f03c4484606eac6}
+      \strng{bibnamehash}{9813e90bd44776bc6f03c4484606eac6}
+      \strng{authorbibnamehash}{9813e90bd44776bc6f03c4484606eac6}
+      \strng{authornamehash}{9813e90bd44776bc6f03c4484606eac6}
+      \strng{authorfullhash}{9813e90bd44776bc6f03c4484606eac6}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Genetic and Evolutionary Computation Conference}
+      \field{title}{Simple genetic operators are universal approximators of probability distributions (and other advantages of expressive encodings)}
+      \field{year}{2022}
+      \field{pages}{739\bibrangedash 748}
+      \range{pages}{10}
+    \endentry
     \entry{ct23}{article}{}
       \name{author}{10}{}{%
         {{hash=56bf0b340039cf8594436a624ff548a9}{%
