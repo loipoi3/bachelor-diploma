@@ -97,6 +97,100 @@
       \verb https://api.semanticscholar.org/CorpusID:69700602
       \endverb
     \endentry
+    \entry{ct31}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=cea2b2811dfa709a1c5c3fcd1bedb210}{%
+           family={Anguita},
+           familyi={A\bibinitperiod},
+           given={Davide},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d26364963945a0f006868adbc63c86db}{%
+           family={Ghio},
+           familyi={G\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5ac1aad6cfc103482fc43476932564a3}{%
+           family={Oneto},
+           familyi={O\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=e6a58f6946e5aba4deef5e02bc3ce27e}{%
+           family={Parra},
+           familyi={P\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod}}}%
+        {{hash=f2958257d45ced4790313eb2dacc03b0}{%
+           family={Reyes-Ortiz},
+           familyi={R\bibinithyphendelim O\bibinitperiod},
+           given={Jorge\bibnamedelima L.},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Bruges, Belgium}%
+      }
+      \strng{namehash}{c1f26659a2ecb625d85c264d3baef5a8}
+      \strng{fullhash}{202d2288a94d44323a4d61b21250f24d}
+      \strng{bibnamehash}{c1f26659a2ecb625d85c264d3baef5a8}
+      \strng{authorbibnamehash}{c1f26659a2ecb625d85c264d3baef5a8}
+      \strng{authornamehash}{c1f26659a2ecb625d85c264d3baef5a8}
+      \strng{authorfullhash}{202d2288a94d44323a4d61b21250f24d}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{21st European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013}
+      \field{month}{4}
+      \field{title}{A Public Domain Dataset for Human Activity Recognition Using Smartphones}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb https://www.kaggle.com/datasets/uciml/human-activity-recognition-with-smartphones/data
+      \endverb
+      \verb{url}
+      \verb https://www.kaggle.com/datasets/uciml/human-activity-recognition-with-smartphones/data
+      \endverb
+    \endentry
+    \entry{ct29}{article}{}
+      \name{author}{3}{}{%
+        {{hash=b8fbef1897da5bf46822ced31bc865c6}{%
+           family={Duchi},
+           familyi={D\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0b3d32703edd2b7248e8e8f33c5893db}{%
+           family={Hazan},
+           familyi={H\bibinitperiod},
+           given={Elad},
+           giveni={E\bibinitperiod}}}%
+        {{hash=300d4990e626d975e0c28630444f63c3}{%
+           family={Singer},
+           familyi={S\bibinitperiod},
+           given={Yoram},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{21039f1d6e97f13dbd40c187a8131cf0}
+      \strng{fullhash}{21039f1d6e97f13dbd40c187a8131cf0}
+      \strng{bibnamehash}{21039f1d6e97f13dbd40c187a8131cf0}
+      \strng{authorbibnamehash}{21039f1d6e97f13dbd40c187a8131cf0}
+      \strng{authornamehash}{21039f1d6e97f13dbd40c187a8131cf0}
+      \strng{authorfullhash}{21039f1d6e97f13dbd40c187a8131cf0}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{61}
+      \field{title}{Adaptive Subgradient Methods for Online Learning and Stochastic Optimization}
+      \field{volume}{12}
+      \field{year}{2011}
+      \field{pages}{2121\bibrangedash 2159}
+      \range{pages}{39}
+      \verb{urlraw}
+      \verb http://jmlr.org/papers/v12/duchi11a.html
+      \endverb
+      \verb{url}
+      \verb http://jmlr.org/papers/v12/duchi11a.html
+      \endverb
+    \endentry
     \entry{ct5}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=379c6d4cd06268eb77c5dd2ab84ba64b}{%
@@ -286,9 +380,7 @@
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{The k-Nearest-Neighbours (kNN) is a simple but effective method for classification. The major drawbacks with respect to kNN are (1) its low efficiency -- being a lazy learning method prohibits it in many applications such as dynamic web mining for a large repository, and (2) its dependency on the selection of a ``good value'' for k. In this paper, we propose a novel kNN type method for classification that is aimed at overcoming these shortcomings. Our method constructs a kNN model for the data, which replaces the data to serve as the basis of classification. The value of k is automatically determined, is varied for different data, and is optimal in terms of classification accuracy. The construction of the model reduces the dependency on k and makes classification faster. Experiments were carried out on some public datasets collected from the UCI machine learning repository in order to test our method. The experimental results show that the kNN based model compares well with C5.0 and kNN in terms of classification accuracy, but is more efficient than the standard kNN.}
       \field{booktitle}{On The Move to Meaningful Internet Systems 2003: CoopIS, DOA, and ODBASE}
-      \field{isbn}{978-3-540-39964-3}
       \field{title}{KNN Model-Based Approach in Classification}
       \field{year}{2003}
       \field{pages}{986\bibrangedash 996}
@@ -367,6 +459,51 @@
       \endverb
       \verb{url}
       \verb https://books.google.com.ua/books?id=Po0RLQ7USIMC
+      \endverb
+    \endentry
+    \entry{ct32}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=3afc8b505de8683602b269b824f8f813}{%
+           family={Kermany},
+           familyi={K\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=25b49ae9660c763222a6e0c5e8f355f6}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Kang},
+           giveni={K\bibinitperiod}}}%
+        {{hash=4529d160647c075f4855f57cce9801cf}{%
+           family={Goldbaum},
+           familyi={G\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Mendeley Data}%
+      }
+      \strng{namehash}{57c3511d7fb0527188cd8d3ff2efa7e0}
+      \strng{fullhash}{57c3511d7fb0527188cd8d3ff2efa7e0}
+      \strng{bibnamehash}{57c3511d7fb0527188cd8d3ff2efa7e0}
+      \strng{authorbibnamehash}{57c3511d7fb0527188cd8d3ff2efa7e0}
+      \strng{authornamehash}{57c3511d7fb0527188cd8d3ff2efa7e0}
+      \strng{authorfullhash}{57c3511d7fb0527188cd8d3ff2efa7e0}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{title}{Labeled Optical Coherence Tomography (OCT) and Chest X-Ray Images for Classification}
+      \field{version}{2}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.17632/rsxcbjbr9sj.2
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.17632/rsxcbjbr9sj.2
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.17632/rsxcbjbr9sj.2
       \endverb
     \endentry
     \entry{ct9}{article}{}
@@ -456,6 +593,43 @@
       \field{journaltitle}{GitHub repository}
       \field{title}{TorchVision: PyTorch's Computer Vision library}
       \field{year}{2016}
+    \endentry
+    \entry{ct28}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=2876e562d6f876f6d3b26ab981cd24a5}{%
+           family={Mao},
+           familyi={M\bibinitperiod},
+           given={Anqi},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8298c87c77cd46a5b2b7e799ba087945}{%
+           family={Mohri},
+           familyi={M\bibinitperiod},
+           given={Mehryar},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a2628ba323f4509b2d8e4b2ebb6a104c}{%
+           family={Zhong},
+           familyi={Z\bibinitperiod},
+           given={Yutao},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{3cbd5268400a37871621c4f140b0462a}
+      \strng{fullhash}{3cbd5268400a37871621c4f140b0462a}
+      \strng{bibnamehash}{3cbd5268400a37871621c4f140b0462a}
+      \strng{authorbibnamehash}{3cbd5268400a37871621c4f140b0462a}
+      \strng{authornamehash}{3cbd5268400a37871621c4f140b0462a}
+      \strng{authorfullhash}{3cbd5268400a37871621c4f140b0462a}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on Machine Learning}
+      \field{title}{Cross-entropy loss functions: Theoretical analysis and applications}
+      \field{year}{2023}
+      \field{pages}{23803\bibrangedash 23828}
+      \range{pages}{26}
     \endentry
     \entry{ct6}{article}{}
       \name{author}{3}{}{%
@@ -735,6 +909,18 @@
       \verb 10.1080/00220670209598786
       \endverb
     \endentry
+    \entry{ct30}{misc}{}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labeltitlesource}{title}
+      \field{title}{Pima Indians Diabetes Database}
+      \verb{urlraw}
+      \verb https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data
+      \endverb
+      \verb{url}
+      \verb https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data
+      \endverb
+    \endentry
     \entry{ct10}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=1747e08170a0c426ada009eaa77aac9e}{%
@@ -789,6 +975,45 @@
       \field{year}{1998}
       \field{pages}{180\bibrangedash 189}
       \range{pages}{10}
+    \endentry
+    \entry{ct26}{article}{}
+      \name{author}{4}{}{%
+        {{hash=bf4fa68cb9f8f1ba975d05579df55a24}{%
+           family={Popescu},
+           familyi={P\bibinitperiod},
+           given={Marius-Constantin},
+           giveni={M\bibinithyphendelim C\bibinitperiod}}}%
+        {{hash=39f78b2e9fb5f4fd25e3cfe95e6e4ddf}{%
+           family={Balas},
+           familyi={B\bibinitperiod},
+           given={Valentina},
+           giveni={V\bibinitperiod}}}%
+        {{hash=093bf2334a35268b15941c1b392b6de4}{%
+           family={Perescu-Popescu},
+           familyi={P\bibinithyphendelim P\bibinitperiod},
+           given={Liliana},
+           giveni={L\bibinitperiod}}}%
+        {{hash=49de31d5dd5b8c25c9f52eb5bbda73e7}{%
+           family={Mastorakis},
+           familyi={M\bibinitperiod},
+           given={Nikos},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{45d820345df58e427c3ffc00d4a53cc4}
+      \strng{fullhash}{f8e06efe442a21f0e5e8ee8bbbc4b06c}
+      \strng{bibnamehash}{45d820345df58e427c3ffc00d4a53cc4}
+      \strng{authorbibnamehash}{45d820345df58e427c3ffc00d4a53cc4}
+      \strng{authornamehash}{45d820345df58e427c3ffc00d4a53cc4}
+      \strng{authorfullhash}{f8e06efe442a21f0e5e8ee8bbbc4b06c}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{WSEAS Transactions on Circuits and Systems}
+      \field{month}{07}
+      \field{title}{Multilayer perceptron and neural networks}
+      \field{volume}{8}
+      \field{year}{2009}
     \endentry
     \entry{ct7}{article}{}
       \name{author}{2}{}{%
@@ -851,6 +1076,38 @@
       \field{year}{2011}
       \field{pages}{52\bibrangedash 56}
       \range{pages}{5}
+    \endentry
+    \entry{ct27}{article}{}
+      \name{author}{2}{}{%
+        {{hash=5fbf99c138246a6e3ec427fc10b54e84}{%
+           family={Ruby},
+           familyi={R\bibinitperiod},
+           given={Usha},
+           giveni={U\bibinitperiod}}}%
+        {{hash=b5aef506036085388cd7d0a575f6a753}{%
+           family={Yendapalli},
+           familyi={Y\bibinitperiod},
+           given={Vamsidhar},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{0ee5383a15e898f928374ddbac00e1aa}
+      \strng{fullhash}{0ee5383a15e898f928374ddbac00e1aa}
+      \strng{bibnamehash}{0ee5383a15e898f928374ddbac00e1aa}
+      \strng{authorbibnamehash}{0ee5383a15e898f928374ddbac00e1aa}
+      \strng{authornamehash}{0ee5383a15e898f928374ddbac00e1aa}
+      \strng{authorfullhash}{0ee5383a15e898f928374ddbac00e1aa}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Advanced Trends in Computer Science and Engineering}
+      \field{month}{10}
+      \field{title}{Binary cross entropy with deep learning technique for Image classification}
+      \field{volume}{9}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.30534/ijatcse/2020/175942020
+      \endverb
     \endentry
     \entry{ct8}{inproceedings}{}
       \name{author}{3}{}{%
