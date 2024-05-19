@@ -19,7 +19,7 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
                         learning_rate_init=0.003641245927855662, learning_rate="adaptive", max_iter=1, batch_size=32,
                         tol=1.57016158038566e-05, shuffle=False, early_stopping=False, warm_start=True)
     train_log_losses, test_log_losses = [], []
-    n_iterations = 118
+    n_iterations = 300
     time_list = []
 
     # Perform training over a set number of iterations to gather loss data
@@ -35,12 +35,21 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
         # Compute log loss for the training and test sets
         train_loss = log_loss(y_train, train_probs)
         test_loss = log_loss(y_test, test_probs)
+        if i % 10 == 0:
+            print("Iter: ", i)
+            print("Time: ", sum(time_list))
+            print("train_loss: ", train_loss)
+            print("test_loss: ", test_loss)
         train_log_losses.append(train_loss)
         test_log_losses.append(test_loss)
+    print("Iter: ", i)
+    print("Time: ", sum(time_list))
+    print("train_loss: ", train_log_losses[-1])
+    print("test_loss: ", test_log_losses[-1])
 
     print("Classic MLP:")
     plot_losses(train_log_losses, test_log_losses)
-    _, res_time = summarize_best_loss_performance(test_log_losses, time_list)
+    _, res_time = summarize_best_loss_performance(test_log_losses, train_log_losses, time_list)
 
     # Find the best threshold for binary classification by maximizing the F1 score
     threshold = 0.0

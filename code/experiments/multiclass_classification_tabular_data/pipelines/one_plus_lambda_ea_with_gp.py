@@ -19,13 +19,13 @@ def run_one_plus_lambda_ea_with_gp(X_train, X_test, y_train, y_test, mlp_time):
     y_test (numpy array): Target labels for the test data.
     """
     # Initialize and run the genetic algorithm model
-    model = GeneticAlgorithmModel(X_train, y_train, X_test, y_test, 8,
+    model = GeneticAlgorithmModel(X_train, y_train, X_test, y_test, 6,
                                   primitive_set=["add", "sub", "mul", "_safe_div", "min", "max", "hypot", "logaddexp"],
                                   terminal_set=["Constant_0", "Constant_1", "Constant_minus_1"],
                                   num_classes=len(np.unique(y_train)))
     champion, train_losses, test_losses, time_list = model.run(lambd=2, max_generations=0,
-                                                               save_checkpoint_path="experiments/multiclass_classification_tabular_data/checkpoints/lambda_2_depth_8_scaled",
-                                                               start_checkpoint="experiments/multiclass_classification_tabular_data/checkpoints/lambda_2_depth_8_scaled/checkpoint_gen_14249.pkl",
+                                                               save_checkpoint_path="",
+                                                               start_checkpoint="experiments/multiclass_classification_tabular_data/checkpoints/lambda_2_depth_6_scaled/checkpoint_gen_29050.pkl",
                                                                save_checkpoint=False)
 
     print("(1 + lambda) - EA with GP:")
@@ -45,18 +45,18 @@ def run_one_plus_lambda_ea_with_gp(X_train, X_test, y_train, y_test, mlp_time):
     print(
         f"Accuracy: {accuracy_test:.4f}, Precision: {precision_test:.4f}, Recall: {recall_test:.4f}, F1-score: {f1_test:.4f}")
 
-    for tree in champion["ind"]:
-        nodes, edges, labels = gp.graph(tree)
-
-        g = nx.Graph()
-        g.add_nodes_from(nodes)
-        g.add_edges_from(edges)
-        pos = graphviz_layout(g, prog="dot")
-
-        nx.draw_networkx_nodes(g, pos)
-        nx.draw_networkx_edges(g, pos)
-        nx.draw_networkx_labels(g, pos, labels)
-        plt.show()
+    # for tree in champion["ind"]:
+    #     nodes, edges, labels = gp.graph(tree)
+    #
+    #     g = nx.Graph()
+    #     g.add_nodes_from(nodes)
+    #     g.add_edges_from(edges)
+    #     pos = graphviz_layout(g, prog="dot")
+    #
+    #     nx.draw_networkx_nodes(g, pos)
+    #     nx.draw_networkx_edges(g, pos)
+    #     nx.draw_networkx_labels(g, pos, labels)
+    #     plt.show()
 
 # import optuna
 # from itertools import combinations

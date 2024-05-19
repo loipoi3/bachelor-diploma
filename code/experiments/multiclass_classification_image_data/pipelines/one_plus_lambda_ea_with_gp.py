@@ -17,11 +17,11 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, mlp
     # Initialize and run the genetic algorithm model
     primitive_set = ["add", "sub", "mul", "_safe_div", "min", "max", "hypot", "logaddexp"]
     terminal_set = ["Constant_0", "Constant_1", "Constant_minus_1"]
-    model = GeneticAlgorithmModel(X_train_pca, y_train, X_test_pca, y_test, 9, primitive_set, terminal_set,
+    model = GeneticAlgorithmModel(X_train_pca, y_train, X_test_pca, y_test, 8, primitive_set, terminal_set,
                                   num_classes=len(np.unique(y_train)))
     champion, train_losses, test_losses, time_list = model.run(lambd=4, max_generations=0,
-                                                               save_checkpoint_path="experiments/multiclass_classification_image_data/checkpoints/lambda_4_depth_9_pca",
-                                                               start_checkpoint="experiments/multiclass_classification_image_data/checkpoints/lambda_4_depth_9_pca/checkpoint_gen_2565.pkl",
+                                                               save_checkpoint_path="",
+                                                               start_checkpoint="experiments/multiclass_classification_image_data/checkpoints/lambda_4_depth_8_pca/checkpoint_gen_4937.pkl",
                                                                save_checkpoint=False)
 
     print("(1 + lambda) - EA with GP:")

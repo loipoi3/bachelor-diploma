@@ -20,15 +20,14 @@ def run_one_plus_lambda_ea_with_gp(X_train, X_test, y_train, y_test, mlp_time):
     primitive_set = ["add", "mul", "min", "max", "logaddexp", "_safe_atan2", "_float_gt", "_float_ge", "_safe_fmod"]
     terminal_set = ["Constant_1", "E"]
     model = GeneticAlgorithmModel(X_train, y_train, X_test, y_test, 3, primitive_set, terminal_set)
-    champion, train_losses, test_losses, time_list = model.run(lambd=2, max_generations=1000,
-                                                               save_checkpoint_path="./",#)
-                                                               mlp_time=2 * mlp_time)
+    champion, train_losses, test_losses, time_list = model.run(lambd=2, max_generations=200,
+                                                               save_checkpoint_path="")
 
     print("(1 + lambda) - EA with GP:")
     # Plot the evolution of training and testing losses over generations
     plot_losses(train_losses, test_losses)
     # Summarize the performance in terms of test loss and computation time
-    summarize_best_loss_performance(test_losses, time_list)
+    summarize_best_loss_performance(test_losses, train_losses, time_list)
 
     # Analyze model predictions at various thresholds to maximize F1 score
     threshold = 0.0
@@ -54,17 +53,17 @@ def run_one_plus_lambda_ea_with_gp(X_train, X_test, y_train, y_test, mlp_time):
               f"Precision={precision_lst[index][0]:.4f}, Recall={recall_lst[index][0]:.4f}, "
               f"F1-score={f1_lst[index][0]:.4f}")
 
-    nodes, edges, labels = gp.graph(champion)
-
-    g = nx.Graph()
-    g.add_nodes_from(nodes)
-    g.add_edges_from(edges)
-    pos = graphviz_layout(g, prog="dot")
-
-    nx.draw_networkx_nodes(g, pos)
-    nx.draw_networkx_edges(g, pos)
-    nx.draw_networkx_labels(g, pos, labels)
-    plt.show()
+    # nodes, edges, labels = gp.graph(champion)
+    #
+    # g = nx.Graph()
+    # g.add_nodes_from(nodes)
+    # g.add_edges_from(edges)
+    # pos = graphviz_layout(g, prog="dot")
+    #
+    # nx.draw_networkx_nodes(g, pos)
+    # nx.draw_networkx_edges(g, pos)
+    # nx.draw_networkx_labels(g, pos, labels)
+    # plt.show()
 
 # import optuna
 # from itertools import combinations

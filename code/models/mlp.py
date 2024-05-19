@@ -106,6 +106,12 @@ class MLP:
                 self._errors_test.append(current_test_loss)
             self._times.append(time.time() - start_time)
 
+            if _ % 1000 == 0:
+                print("Iter: ", _)
+                print("Time: ", sum(self._times))
+                print("train_loss: ", current_loss)
+                print("test_loss: ", current_test_loss)
+
     def predict(self, X, threshold=None, classes: int = 1):
         """
         Predict labels for given input X based on a threshold.

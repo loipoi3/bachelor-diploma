@@ -202,7 +202,7 @@ class GeneticAlgorithmModel:
             start_generation = 0
 
         for gen in range(start_generation, max_generations):
-            print(gen)
+            # print(gen)
         # while sum(time_list) < mlp_time:
             start_time = time.time()
             if self._num_classes == 1:
@@ -242,7 +242,12 @@ class GeneticAlgorithmModel:
 
             if save_checkpoint:
                 self._save_checkpoint(champion, gen, train_losses, test_losses, time_list, save_checkpoint_path)
-
+        for i in range(len(train_losses)):
+            if i % 10 == 0:
+                print("Iter: ", i)
+                print("Time: ", sum(time_list[:i]))
+                print("train_loss: ", train_losses[i])
+                print("test_loss: ", test_losses[i])
         return champion, train_losses, test_losses, time_list
 
     def make_predictions_with_threshold(self, individual, X, threshold: float = 0.5) -> int:

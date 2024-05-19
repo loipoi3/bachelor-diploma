@@ -20,7 +20,7 @@ def plot_losses(train_losses: list, test_losses: list):
     plt.show()
 
 
-def summarize_best_loss_performance(test_losses: list, time_list: list):
+def summarize_best_loss_performance(test_losses: list, train_losses: list, time_list: list):
     """
     Print the best test loss performance details, including the iteration indexes and total time taken up to each
     iteration.
@@ -31,11 +31,12 @@ def summarize_best_loss_performance(test_losses: list, time_list: list):
     """
     best_test_loss = min(test_losses)
     # Identify all indexes where the test loss is equal to the best test loss
-    best_indexes = [i + 1 for i, loss in enumerate(test_losses) if loss == best_test_loss]
+    best_test_indexes = [i + 1 for i, loss in enumerate(test_losses) if loss == best_test_loss]
     # Calculate the cumulative time up to each best index
-    total_times_up_to_best = [sum(time_list[:i + 1]) for i in best_indexes]
+    total_times_up_to_best_test = [sum(time_list[:i + 1]) for i in best_test_indexes]
 
     print("Best Test Loss:", best_test_loss)
-    print("Indexes of Best Test Loss:", best_indexes)
-    print("Total Times up to these iterations (seconds):", total_times_up_to_best)
-    return best_test_loss, total_times_up_to_best[0]
+    print("Corresponding Train Loss:", train_losses[best_test_indexes[0]])
+    print("Indexes of Best Test Loss:", best_test_indexes)
+    print("Total Times up to these iterations (seconds):", total_times_up_to_best_test)
+    return best_test_loss, total_times_up_to_best_test[0]

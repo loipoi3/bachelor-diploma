@@ -16,5 +16,6 @@
 \contentsline {chapter}{\numberline {3}Попередня обробка даних, побудова моделей та оцінка методів}{30}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Попередня обробка даних}{30}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Детальний опис моделей та підбір гіперпараметрів моделей}{32}{section.3.2}%
-\contentsline {section}{Висновки до розділу \ref {chap:practice}}{35}{table.caption.10}%
-\contentsline {chapter}{Висновки}{36}{chapter*.11}%
+\contentsline {section}{\numberline {3.3}Навчання моделей та порівняльний аналіз результатів}{35}{section.3.3}%
+\contentsline {section}{Висновки до розділу \ref {chap:practice}}{37}{table.caption.12}%
+\contentsline {chapter}{Висновки}{38}{chapter*.13}%
