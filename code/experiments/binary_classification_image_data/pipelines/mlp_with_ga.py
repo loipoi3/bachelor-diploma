@@ -22,7 +22,7 @@ def run_mlp_with_ga(X_train_pca, X_test_pca, y_train, y_test):
     # Plot training and test loss history
     plot_losses(model._errors, model._errors_test)
     # Summarize best test loss performance and corresponding computation times
-    summarize_best_loss_performance(model._errors_test, model._times)
+    summarize_best_loss_performance(model._errors_test, model._errors, model._times)
 
     # Initialize lists to store performance metrics at different thresholds
     threshold = 0.0

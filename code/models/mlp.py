@@ -86,7 +86,7 @@ class MLP:
             self._errors_test = []
             initial_test_loss = log_loss(y_test, self._eval_model(X_test))
             self._errors_test.append(initial_test_loss)
-        for _ in range(self.max_iter):
+        for _ in range(1, self.max_iter + 1):
             start_time = time.time()
             # Randomly select weight to mutate
             layer_index = np.random.randint(0, len(self._weights), size=1)[0]
@@ -111,6 +111,9 @@ class MLP:
                 print("Time: ", sum(self._times))
                 print("train_loss: ", current_loss)
                 print("test_loss: ", current_test_loss)
+        print("Time list: ", self._times)
+        print("Train loss list: ", self._errors)
+        print("Test loss list: ", self._errors_test)
 
     def predict(self, X, threshold=None, classes: int = 1):
         """

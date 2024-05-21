@@ -23,7 +23,7 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
     time_list = []
 
     # Perform training over a set number of iterations to gather loss data
-    for i in range(n_iterations):
+    for i in range(1, n_iterations+1):
         start_time = time.time()
         mlp.fit(X_train, y_train)
         time_list.append(time.time() - start_time)
@@ -42,10 +42,9 @@ def run_classic_mlp(X_train, X_test, y_train, y_test):
             print("test_loss: ", test_loss)
         train_log_losses.append(train_loss)
         test_log_losses.append(test_loss)
-    print("Iter: ", i)
-    print("Time: ", sum(time_list))
-    print("train_loss: ", train_log_losses[-1])
-    print("test_loss: ", test_log_losses[-1])
+    print("Time list: ", time_list)
+    print("Train loss list: ", train_log_losses)
+    print("Test loss list: ", test_log_losses)
 
     print("Classic MLP:")
     plot_losses(train_log_losses, test_log_losses)

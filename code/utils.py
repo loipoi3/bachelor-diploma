@@ -11,12 +11,13 @@ def plot_losses(train_losses: list, test_losses: list):
     """
     plt.figure(figsize=(10, 5))
     generations = range(1, len(train_losses) + 1)
-    plt.plot(generations, train_losses, label='Train Loss')
-    plt.plot(generations, test_losses, label='Test Loss')
-    plt.xlabel('Generations')
-    plt.ylabel('Loss')
-    plt.title('Evolution of Train and Test Loss')
+    plt.plot(generations, train_losses, label='Функція втрат для навчальної вибірки')
+    plt.plot(generations, test_losses, label='Функція втрат для тестової вибірки')
+    plt.xlabel('Ітерації')
+    plt.ylabel('Значення функції втрат')
+    plt.title('Зміна функції втрат для навчальної та тестової вибірок')
     plt.legend()
+    plt.xticks(list(range(1, 2)) + list(range(5, len(train_losses) + 1, 5)))
     plt.show()
 
 
@@ -33,7 +34,7 @@ def summarize_best_loss_performance(test_losses: list, train_losses: list, time_
     # Identify all indexes where the test loss is equal to the best test loss
     best_test_indexes = [i + 1 for i, loss in enumerate(test_losses) if loss == best_test_loss]
     # Calculate the cumulative time up to each best index
-    total_times_up_to_best_test = [sum(time_list[:i + 1]) for i in best_test_indexes]
+    total_times_up_to_best_test = [sum(time_list[:i]) for i in best_test_indexes]
 
     print("Best Test Loss:", best_test_loss)
     print("Corresponding Train Loss:", train_losses[best_test_indexes[0]])
