@@ -23,7 +23,7 @@ def run_classic_mlp(X_train_pca, X_test_pca, y_train, y_test):
     time_list = []
 
     # Perform training over a set number of iterations to gather loss data
-    for i in range(n_iterations):
+    for i in range(1, n_iterations + 1):
         start_time = time.time()
         mlp.fit(X_train_pca, y_train)
         time_list.append(time.time() - start_time)
@@ -35,12 +35,20 @@ def run_classic_mlp(X_train_pca, X_test_pca, y_train, y_test):
         # Compute log loss for the training and test sets
         train_loss = log_loss(y_train, train_probs)
         test_loss = log_loss(y_test, test_probs)
+        if i % 1 == 0:
+            print("Iter: ", i)
+            print("Time: ", sum(time_list))
+            print("train_loss: ", train_loss)
+            print("test_loss: ", test_loss)
         train_log_losses.append(train_loss)
         test_log_losses.append(test_loss)
+    print("Time list: ", time_list)
+    print("Train loss list: ", train_log_losses)
+    print("Test loss list: ", test_log_losses)
 
     print("Classic MLP:")
     plot_losses(train_log_losses, test_log_losses)
-    _, res_time = summarize_best_loss_performance(test_log_losses, time_list)
+    _, res_time = summarize_best_loss_performance(test_log_losses, train_log_losses, time_list)
 
     # Predict classes directly
     y_pred_test = mlp.predict(X_test_pca)

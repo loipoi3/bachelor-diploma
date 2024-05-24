@@ -106,7 +106,7 @@ class MLP:
                 self._errors_test.append(current_test_loss)
             self._times.append(time.time() - start_time)
 
-            if _ % 1000 == 0:
+            if _ % 500 == 0:
                 print("Iter: ", _)
                 print("Time: ", sum(self._times))
                 print("train_loss: ", current_loss)

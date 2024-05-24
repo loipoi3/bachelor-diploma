@@ -28,7 +28,7 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, mlp
     # Plot the evolution of training and testing losses over generations
     plot_losses(train_losses, test_losses)
     # Summarize the performance in terms of test loss and computation time
-    summarize_best_loss_performance(test_losses, time_list)
+    summarize_best_loss_performance(test_losses, train_losses, time_list)
 
     # Predict classes directly
     y_pred_test = model.make_predictions_with_threshold(champion, X_test_pca)
