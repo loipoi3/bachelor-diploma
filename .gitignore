@@ -1,5 +1,4 @@
 2202.09679.pdf
-pictures/
 datasets/
 tex_file/
 checkpoints/
@@ -12,6 +11,7 @@ saved_model.pth
 output.pdf
 ФІ-02_Харь_ДФ_презентація.pptx
 ФІ-02_Харь_ДФ_презентація.pdf
+Заява_на_затв_теми.doc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

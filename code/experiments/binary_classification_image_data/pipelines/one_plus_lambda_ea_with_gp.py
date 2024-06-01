@@ -20,7 +20,7 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, mlp
     model = GeneticAlgorithmModel(X_train_pca, y_train, X_test_pca, y_test, 6, primitive_set, terminal_set)
     champion, train_losses, test_losses, time_list = model.run(lambd=4, max_generations=0,
                                                                save_checkpoint_path="",
-                                                               start_checkpoint="experiments/binary_classification_image_data/checkpoints/lambda_4_depth_6_pca/checkpoint_gen_48041.pkl",
+                                                               start_checkpoint="experiments/binary_classification_image_data/checkpoints/lambda_4_depth_6_pca/checkpoint_gen_299.pkl",
                                                                save_checkpoint=False)
 
     print("(1 + lambda) - EA with GP:")

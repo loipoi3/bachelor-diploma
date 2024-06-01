@@ -31,8 +31,8 @@ if __name__ == "__main__":
     X_test_pca = pca.transform(X_test_scaled)
 
     # Run the different ML model pipelines with the processed data
-    run_classic_mlp(X_train_pca, X_test_pca, y_train, y_test)
-    print()
-    run_mlp_with_ga(X_train_pca, X_test_pca, y_train, y_test)
-    print()
+    # run_classic_mlp(X_train_pca, X_test_pca, y_train, y_test)
+    # print()
+    # run_mlp_with_ga(X_train_pca, X_test_pca, y_train, y_test)
+    # print()
     run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, 1)
