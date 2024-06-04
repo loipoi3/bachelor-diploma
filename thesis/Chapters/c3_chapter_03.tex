@@ -27,8 +27,6 @@ MLP with single-point mutation використовує оптимізаційн
 Почнемо розгляд з задач класифікації та моделі MLP with gradient descent. Для підбору гіперпараметрів для цієї моделі ми використовували бібліотеку optuna~\cite{ct22}, яка дозволяє проводити байєсівську оптимізацію~\cite{ct37}. Для цього ми задали простір гіперпараметрів по якому проводився пошук оптимальних з них за 1000 ітерацій. Найкращі гіперпараметри для кожної задачі можна подивитися у таблиці \ref{tab_hyperparameters_for_mlp_with_gd}.
 
 \begin{table}[ht]
-	\caption{Найкращі гіперпараметри для моделі MLP with gradient descent}
-	\label{tab_hyperparameters_for_mlp_with_gd}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
@@ -45,13 +43,13 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Найкращі гіперпараметри для моделі MLP with gradient descent}
+	\label{tab_hyperparameters_for_mlp_with_gd}
 \end{table}
 
 Для моделі MLP with single-point mutation для пошуку оптимальних гіперпараметрів також було застосовану байєсівську оптимізацію~\cite{ct37} за 1000 ітерацій. В результаті ми отримали оптимальні гіперпараметри, які можна подивитися у таблиці \ref{tab_hyperparameters_for_mlp_with_sp_mut}.
 
 \begin{table}[ht]
-	\caption{Найкращі гіперпараметри для моделі MLP with single-point mutation}
-	\label{tab_hyperparameters_for_mlp_with_sp_mut}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
@@ -62,13 +60,13 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Найкращі гіперпараметри для моделі MLP with single-point mutation}
+	\label{tab_hyperparameters_for_mlp_with_sp_mut}
 \end{table}
 
 Останньою моделлю для якої ми шукали оптимальні параметри є $(1+\lambda)$-EA with GP encoding. Процес пошуку такий же самий як і для вище наведених моделей. Відповідні результати наводяться у таблиці \ref{tab_hyperparameters_for_evol_alg}.
 
 \begin{table}[ht]
-	\caption{Найкращі гіперпараметри для моделі $(1+\lambda)$-EA with GP encoding}
-	\label{tab_hyperparameters_for_evol_alg}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
@@ -79,6 +77,8 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Найкращі гіперпараметри для моделі $(1+\lambda)$-EA with GP encoding}
+	\label{tab_hyperparameters_for_evol_alg}
 \end{table}
 
 Таким чином після того, як ми отримали оптимальні гіперпараметри для усіх моделей можна переходити до процесу тренування та аналізу результатів.
@@ -92,8 +92,6 @@ MLP with single-point mutation використовує оптимізаційн
 Володіючи детальною інформацією про метрики та функції втрат перейдемо до тренування моделей. Почнемо розгляд з задачі бінарної класифікації табличних даних, як вже зазначалося в розділі \ref{sec:data-description} для цього ми використовували датасет Pima Indians Diabetes Database~\cite{ct30}. Оптимальні гіперпараметри для усіх трьох моделей можна знайти у попередньому розділі. Зазначимо, що MLP with gradient descent, MLP with single-point mutation та $(1+\lambda)$-EA with GP encodings тренувалися протягом 150, 6000 та 50 епох відповідно. Після тренування ми отримали результати для моделі MLP with gradient descent, які можна подивитися в таблиці \ref{mlp_gd_bc_td_results}, для моделі MLP with single-point mutation -- у таблиці \ref{mlp_spm_bc_td_results}, для моделі $(1+\lambda)$-EA with GP encodings -- у таблиці \ref{ea_bc_td_results}. Результуючі метрики на найкращій ітерації для усіх трьох моделей знаходяться в таблиці \ref{metrics_bc_td_results}. Графіки зміни функцій втрат для кожної моделі можна знайти на рисунку \ref{fig_losses_bc_td}
 
 \begin{table}[ht]
-	\caption{Результати моделі MLP with gradient descent для задачі бінарної класифікації табличних даних}
-	\label{mlp_gd_bc_td_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -110,11 +108,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі MLP with gradient descent для задачі бінарної класифікації табличних даних}
+	\label{mlp_gd_bc_td_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Результати моделі MLP with single-point mutation для задачі бінарної класифікації табличних даних}
-	\label{mlp_spm_bc_td_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -137,11 +135,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі MLP with single-point mutation для задачі бінарної класифікації табличних даних}
+	\label{mlp_spm_bc_td_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Результати моделі $(1+\lambda)$-EA with GP encodings для задачі бінарної класифікації табличних даних}
-	\label{ea_bc_td_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -162,11 +160,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі $(1+\lambda)$-EA with GP encodings для задачі бінарної класифікації табличних даних}
+	\label{ea_bc_td_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Метрики на найкращій ітерації кожної моделі для задачі бінарної класифікації табличних даних}
-	\label{metrics_bc_td_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -183,6 +181,8 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Метрики на найкращій ітерації кожної моделі для задачі бінарної класифікації табличних даних}
+	\label{metrics_bc_td_results}
 \end{table}
 
 \begin{figure}[ht]
@@ -209,8 +209,6 @@ MLP with single-point mutation використовує оптимізаційн
 Тепер перейдемо до задачі бінарної класифікації картинок. Як ми вже згадували у розділі \ref{sec:data-description} для цього ми використовували датасет Chest X-Ray Images (Pneumonia)~\cite{ct32}. Оптимальні гіперпараметри для усіх трьох моделей можна знайти у попередньому розділі. Зазначимо, що моделі тренувалися протягом 80, 6000 та 350 епох відповідно. Після тренування ми отримали результати для моделі MLP with gradient descent, які можна подивитися в таблиці \ref{mlp_gd_bc_id_results}, для моделі MLP with single-point mutation -- у таблиці \ref{mlp_spm_bc_id_results}, для моделі $(1+\lambda)$-EA with GP encodings -- у таблиці \ref{ea_bc_id_results}. Результуючі метрики на найкращій ітерації для усіх трьох моделей знаходяться в таблиці \ref{metrics_bc_id_results}. Графіки зміни функцій втрат для кожної моделі можна знайти на рисунку \ref{fig_losses_bc_id}.
 
 \begin{table}[ht]
-	\caption{Результати моделі MLP with gradient descent для задачі бінарної класифікації картинок}
-	\label{mlp_gd_bc_id_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -229,11 +227,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі MLP with gradient descent для задачі бінарної класифікації картинок}
+	\label{mlp_gd_bc_id_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Результати моделі MLP with single-point mutation для задачі бінарної класифікації картинок}
-	\label{mlp_spm_bc_id_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -256,11 +254,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі MLP with single-point mutation для задачі бінарної класифікації картинок}
+	\label{mlp_spm_bc_id_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Результати моделі $(1+\lambda)$-EA with GP encodings для задачі бінарної класифікації картинок}
-	\label{ea_bc_id_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -285,11 +283,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі $(1+\lambda)$-EA with GP encodings для задачі бінарної класифікації картинок}
+	\label{ea_bc_id_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Метрики на найкращій ітерації кожної моделі для задачі бінарної класифікації картинок}
-	\label{metrics_bc_id_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -306,6 +304,8 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Метрики на найкращій ітерації кожної моделі для задачі бінарної класифікації картинок}
+	\label{metrics_bc_id_results}
 \end{table}
 
 \begin{figure}[ht]
@@ -332,8 +332,6 @@ MLP with single-point mutation використовує оптимізаційн
 Тепер розглянемо задачу багатокласової класифікації табличних даних. Як вже згадувалося у розділі \ref{sec:data-description} для цього ми використовували датасет Human Activity Recognition with Smartphones~\cite{ct31}. Оптимальні гіперпараметри для усіх трьох моделей можна знайти у попередньому розділі. Зазначимо, що моделі тренувалися протягом 100, 40000 та 15000 епох відповідно. Після тренування ми отримали результати для моделі MLP with gradient descent, які можна знайти у таблиці \ref{mlp_gd_mc_td_results}, для моделі MLP with single-point mutation -- у таблиці \ref{mlp_spm_mc_td_results}, для моделі $(1+\lambda)$-EA with GP encodings -- у таблиці \ref{ea_mc_td_results}. Результуючі метрики на найкращій ітерації для усіх трьох моделей знаходяться в таблиці \ref{metrics_mc_td_results}. Графіки зміни функцій втрат для кожної моделі можна знайти на рисунку \ref{fig_losses_mc_td}.
 
 \begin{table}[ht]
-	\caption{Результати моделі MLP with gradient descent для задачі багатокласової класифікації табличних даних}
-	\label{mlp_gd_mc_td_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -352,11 +350,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі MLP with gradient descent для задачі багатокласової класифікації табличних даних}
+	\label{mlp_gd_mc_td_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Результати моделі MLP with single-point mutation для задачі багатокласової класифікації табличних даних}
-	\label{mlp_spm_mc_td_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -375,11 +373,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі MLP with single-point mutation для задачі багатокласової класифікації табличних даних}
+	\label{mlp_spm_mc_td_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Результати моделі $(1+\lambda)$-EA with GP encodings для задачі багатокласової класифікації табличних даних}
-	\label{ea_mc_td_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -396,11 +394,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі $(1+\lambda)$-EA with GP encodings для задачі багатокласової класифікації табличних даних}
+	\label{ea_mc_td_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Метрики на найкращій ітерації кожної моделі для задачі багатокласової класифікації табличних даних}
-	\label{metrics_mc_td_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -417,6 +415,8 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Метрики на найкращій ітерації кожної моделі для задачі багатокласової класифікації табличних даних}
+	\label{metrics_mc_td_results}
 \end{table}
 
 \begin{figure}[ht]
@@ -443,8 +443,6 @@ MLP with single-point mutation використовує оптимізаційн
 Перейдемо до розгляду останньої задачі для якої ми робили порівняння моделей, а саме багатокласової класифікації картинок. Як ми вже згадували у розділі \ref{sec:data-description} для цього ми використовували датасет Chest X-Ray Images (Pneumonia)~\cite{ct32}. Оптимальні гіперпараметри для усіх трьох моделей можна знайти у попередньому розділі. Зазначимо, що моделі тренувалися протягом 4, 4000 та 3000 епох відповідно. Після тренування ми отримали результати для моделі MLP with gradient descent, які можна знайти у таблиці \ref{mlp_gd_mc_id_results}, для моделі MLP with single-point mutation -- у таблиці \ref{mlp_spm_mc_id_results}, для моделі $(1+\lambda)$-EA with GP encodings -- у таблиці \ref{ea_mc_id_results}. Результуючі метрики на найкращій ітерації для усіх трьох моделей знаходяться в таблиці \ref{metrics_mc_id_results}. Графіки зміни функцій втрат для кожної моделі можна знайти на рисунку \ref{fig_losses_mc_id}.
 
 \begin{table}[ht]
-	\caption{Результати моделі MLP with gradient descent для задачі багатокласової класифікації картинок}
-	\label{mlp_gd_mc_id_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -461,11 +459,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі MLP with gradient descent для задачі багатокласової класифікації картинок}
+	\label{mlp_gd_mc_id_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Результати моделі MLP with single-point mutation для задачі багатокласової класифікації картинок}
-	\label{mlp_spm_mc_id_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -484,11 +482,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі MLP with single-point mutation для задачі багатокласової класифікації картинок}
+	\label{mlp_spm_mc_id_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Результати моделі $(1+\lambda)$-EA with GP encodings для задачі багатокласової класифікації картинок}
-	\label{ea_mc_id_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -505,11 +503,11 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Результати моделі $(1+\lambda)$-EA with GP encodings для задачі багатокласової класифікації картинок}
+	\label{ea_mc_id_results}
 \end{table}
 
 \begin{table}[ht]
-	\caption{Метрики на найкращій ітерації кожної моделі для задачі багатокласової класифікації картинок}
-	\label{metrics_mc_id_results}
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{tabular}{|c|c|c|c|}
@@ -526,6 +524,8 @@ MLP with single-point mutation використовує оптимізаційн
 			\hline
 		\end{tabular}
 	\end{adjustbox}
+	\caption{Метрики на найкращій ітерації кожної моделі для задачі багатокласової класифікації картинок}
+	\label{metrics_mc_id_results}
 \end{table}
 
 \begin{figure}[ht]

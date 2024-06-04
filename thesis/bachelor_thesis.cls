@@ -43,7 +43,7 @@
 \RequirePackage{subcaption}             % пакет для вставки підрисунків (subfig та subcaption конфліктують між собою)
 
 \RequirePackage{flafter}                        % пакет гарантує, що рисунок чи таблиця ніколи не з'являться раніше посилання на самих себе
-\RequirePackage[singlelinecheck=off]{caption}   % пакет для персоналізації заголовків рисунків та таблиць 
+\RequirePackage[singlelinecheck=off, position=below]{caption}   % пакет для персоналізації заголовків рисунків та таблиць 
                                                 % (вимкнена перевірка на те, щоб заголовок був у один рядок
 
 %\RequirePackage{xtab}                   % пакет для довгих таблиць
@@ -120,7 +120,7 @@
 
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}
 
-\captionsetup[table]{margin=0pt, singlelinecheck=false, labelfont=bf, textfont=normalfont, justification=justified, labelsep=endash, labelformat=tablecap, font = {Large, stretch = 1.5}} % формат для таблиць
+\captionsetup[table]{margin=0pt, singlelinecheck=false, position=bottom, labelfont=bf, textfont=normalfont, justification=justified, labelsep=endash, labelformat=tablecap, font = {Large, stretch = 1.5}} % формат для таблиць
 \captionsetup[figure]{justification=centering, labelsep=endash, labelfont=bf, textfont=normalfont, labelformat=figurecap, font = {Large, stretch = 1.5}} % формат для рисунків
 %\captionsetup[lstlisting]{margin=0pt, format=listing, singlelinecheck=false, font = {stretch = 1.5}} % формат для лістингів
 

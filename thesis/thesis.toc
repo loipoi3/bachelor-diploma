@@ -6,7 +6,7 @@
 \contentsline {section}{\numberline {1.2}Способи вирішення задачі класифікації}{12}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Метрики оцінки якості моделей та функції втрат, для задач класифікації}{14}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Процес навчання моделей для задач класифікації}{16}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Огляд суміжних робіт}{18}{section.1.5}%
+\contentsline {section}{\numberline {1.5}Огляд суміжних робіт}{19}{section.1.5}%
 \contentsline {section}{Висновки до розділу \ref {chap:review}}{22}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Підготовка до проведення дослідження}{23}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Використані інструменти та ресурси}{23}{section.2.1}%
