@@ -1,54 +1,69 @@
 import time
+from sklearn.model_selection import StratifiedKFold
+import numpy as np
 from sklearn.metrics import log_loss, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.neural_network import MLPClassifier
 from code.utils import plot_losses, summarize_best_loss_performance
 
 
-def run_classic_mlp(X_train, X_test, y_train, y_test):
+def run_classic_mlp(X, y, n_splits=5, n_iterations=300):
     """
-    Fit a Logistic Regression model and analyze its performance using PCA-transformed features.
+    Fit an MLP model and analyze its performance using cross-validation.
 
     Args:
-    X_train_pca (numpy array): Training data features after PCA transformation.
-    X_test_pca (numpy array): Test data features after PCA transformation.
-    y_train (numpy array): Training data labels.
-    y_test (numpy array): Test data labels.
+    X (numpy array): Data features.
+    y (numpy array): Data labels.
+    n_splits (int): Number of cross-validation splits.
+    n_iterations (int): Number of training iterations.
     """
-    # Initialize LogisticRegression model for iterative learning
-    mlp = MLPClassifier(hidden_layer_sizes=(10, 15, 10), activation="tanh", solver="sgd", alpha=0.0008624588573893637,
-                        learning_rate_init=0.003641245927855662, learning_rate="adaptive", max_iter=1, batch_size=32,
-                        tol=1.57016158038566e-05, shuffle=False, early_stopping=False, warm_start=True)
-    train_log_losses, test_log_losses = [], []
-    n_iterations = 300
-    time_list = []
+    skf = StratifiedKFold(n_splits=n_splits)
+    overall_train_log_losses, overall_test_log_losses = np.zeros(n_iterations), np.zeros(n_iterations)
+    total_time_list = np.zeros(n_iterations)
 
-    # Perform training over a set number of iterations to gather loss data
-    for i in range(1, n_iterations+1):
-        start_time = time.time()
-        mlp.fit(X_train, y_train)
-        time_list.append(time.time() - start_time)
+    for train_index, test_index in skf.split(X, y):
+        X_train, X_test = X[train_index], X[test_index]
+        y_train, y_test = y[train_index], y[test_index]
 
-        # Predict probabilities for both training and test sets
-        train_probs = mlp.predict_proba(X_train)
-        test_probs = mlp.predict_proba(X_test)
+        # Initialize MLPClassifier model for iterative learning
+        mlp = MLPClassifier(hidden_layer_sizes=(10, 15, 10), activation="tanh", solver="sgd", alpha=0.0008624588573893637,
+                            learning_rate_init=0.003641245927855662, learning_rate="adaptive", max_iter=1, batch_size=32,
+                            tol=1.57016158038566e-05, shuffle=False, early_stopping=False, warm_start=True)
 
-        # Compute log loss for the training and test sets
-        train_loss = log_loss(y_train, train_probs)
-        test_loss = log_loss(y_test, test_probs)
-        if i % 10 == 0:
-            print("Iter: ", i)
-            print("Time: ", sum(time_list))
-            print("train_loss: ", train_loss)
-            print("test_loss: ", test_loss)
-        train_log_losses.append(train_loss)
-        test_log_losses.append(test_loss)
-    print("Time list: ", time_list)
-    print("Train loss list: ", train_log_losses)
-    print("Test loss list: ", test_log_losses)
+        fold_train_losses, fold_test_losses = [], []
+        time_list = []
 
-    print("Classic MLP:")
-    plot_losses(train_log_losses, test_log_losses)
-    _, res_time = summarize_best_loss_performance(test_log_losses, train_log_losses, time_list)
+        for i in range(n_iterations):
+            start_time = time.time()
+            mlp.fit(X_train, y_train)
+            iteration_time = time.time() - start_time
+            time_list.append(iteration_time)
+
+            # Predict probabilities for both training and test sets
+            train_probs = mlp.predict_proba(X_train)
+            test_probs = mlp.predict_proba(X_test)
+
+            # Compute log loss for the training and test sets
+            train_loss = log_loss(y_train, train_probs)
+            test_loss = log_loss(y_test, test_probs)
+
+            fold_train_losses.append(train_loss)
+            fold_test_losses.append(test_loss)
+
+        # Accumulate losses for each fold
+        overall_train_log_losses += np.array(fold_train_losses)
+        overall_test_log_losses += np.array(fold_test_losses)
+        total_time_list += np.array(time_list)
+
+    # Average the losses across all folds
+    avg_train_log_losses = overall_train_log_losses / n_splits
+    avg_test_log_losses = overall_test_log_losses / n_splits
+    avg_time_list = total_time_list / n_splits
+    print("train_loss_list = ", avg_train_log_losses.tolist())
+    print("test_loss_list = ", avg_test_log_losses.tolist())
+    print("time_list = ", avg_time_list.tolist())
+    print("Classic MLP with Cross-Validation:")
+    plot_losses(avg_train_log_losses, avg_test_log_losses)
+    _, res_time = summarize_best_loss_performance(avg_test_log_losses, avg_train_log_losses, avg_time_list)
 
     # Find the best threshold for binary classification by maximizing the F1 score
     threshold = 0.0

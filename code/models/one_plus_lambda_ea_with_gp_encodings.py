@@ -3,7 +3,7 @@ import numpy as np
 import operator
 import math
 from deap import gp, creator, base, tools
-from sklearn.metrics import log_loss
+from sklearn.metrics import log_loss, f1_score, accuracy_score, precision_score, recall_score
 from scipy.special import softmax
 import random
 import pickle
@@ -200,9 +200,13 @@ class GeneticAlgorithmModel:
                 champion["fitness"]["values"] = champion_fitness[0]
 
             start_generation = 0
+        f1_list = []
+        accuracy_list = []
+        precision_list = []
+        recall_list = []
 
         for gen in range(start_generation, max_generations):
-            # print(gen)
+            print(gen)
         # while sum(time_list) < mlp_time:
             start_time = time.time()
             if self._num_classes == 1:
@@ -233,25 +237,42 @@ class GeneticAlgorithmModel:
                 sorted_list = sorted(candidates, key=lambda x: x["fitness"]["values"])
                 champion = sorted_list[0]
             time_list.append(time.time() - start_time)
-
+            print(sum(time_list))
             train_loss = self._evalSymbReg(champion, self.X_train, self.y_train)[0]
             train_losses.append(train_loss)
 
             test_loss = self._evalSymbReg(champion, self.X_test, self.y_test)[0]
             test_losses.append(test_loss)
 
+            best_f1 = 0
+            best_threshold = 0.0
+            for threshold in np.arange(0.0, 1.01, 0.01):
+                y_pred = self.make_predictions_with_threshold(champion, self.X_test, threshold=threshold)
+                f1 = f1_score(self.y_test, y_pred)
+                if f1 > best_f1:
+                    best_f1 = f1
+                    best_threshold = threshold
+            y_pred = self.make_predictions_with_threshold(champion, self.X_test, threshold=best_threshold)
+            accuracy = accuracy_score(self.y_test, y_pred)
+            precision = precision_score(self.y_test, y_pred, zero_division=0)
+            recall = recall_score(self.y_test, y_pred)
+            f1_list.append(best_f1)
+            accuracy_list.append(accuracy)
+            precision_list.append(precision)
+            recall_list.append(recall)
+            print(time.time() - start_time)
             if save_checkpoint:
                 self._save_checkpoint(champion, gen, train_losses, test_losses, time_list, save_checkpoint_path)
-        for i in range(1, len(time_list) + 1):
-            if i % 5000 == 0:
-                print("Iter: ", i)
-                print("Time: ", sum(time_list[:i]))
-                print("train_loss: ", train_losses[i-1])
-                print("test_loss: ", test_losses[i-1])
-        print("Time list: ", time_list)
-        print("Train loss list: ", train_losses)
-        print("Test loss list: ", test_losses)
-        return champion, train_losses, test_losses, time_list
+        # for i in range(1, len(time_list) + 1):
+        #     if i % 5000 == 0:
+        #         print("Iter: ", i)
+        #         print("Time: ", sum(time_list[:i]))
+        #         print("train_loss: ", train_losses[i-1])
+        #         print("test_loss: ", test_losses[i-1])
+        # print("Time list: ", time_list)
+        # print("Train loss list: ", train_losses)
+        # print("Test loss list: ", test_losses)
+        return champion, train_losses, test_losses, time_list, f1_list, accuracy_list, precision_list, recall_list
 
     def make_predictions_with_threshold(self, individual, X, threshold: float = 0.5) -> int:
         """

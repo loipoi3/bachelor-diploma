@@ -35,4 +35,4 @@ if __name__ == "__main__":
     # print()
     # run_mlp_with_ga(X_train_pca, X_test_pca, y_train, y_test)
     # print()
-    run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, 1)
+    run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test)

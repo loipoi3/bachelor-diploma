@@ -106,14 +106,14 @@ class MLP:
                 self._errors_test.append(current_test_loss)
             self._times.append(time.time() - start_time)
 
-            if _ % 500 == 0:
-                print("Iter: ", _)
-                print("Time: ", sum(self._times))
-                print("train_loss: ", current_loss)
-                print("test_loss: ", current_test_loss)
-        print("Time list: ", self._times)
-        print("Train loss list: ", self._errors)
-        print("Test loss list: ", self._errors_test)
+        #     if _ % 500 == 0:
+        #         print("Iter: ", _)
+        #         print("Time: ", sum(self._times))
+        #         print("train_loss: ", current_loss)
+        #         print("test_loss: ", current_test_loss)
+        # print("Time list: ", self._times)
+        # print("Train loss list: ", self._errors)
+        # print("Test loss list: ", self._errors_test)
 
     def predict(self, X, threshold=None, classes: int = 1):
         """

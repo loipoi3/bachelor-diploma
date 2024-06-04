@@ -1,75 +1,133 @@
 import time
+
+import numpy as np
 from sklearn.metrics import log_loss, accuracy_score, precision_score, recall_score, f1_score
+from sklearn.model_selection import StratifiedKFold
 from sklearn.neural_network import MLPClassifier
 from code.utils import plot_losses, summarize_best_loss_performance
 
 
-def run_classic_mlp(X_train_pca, X_test_pca, y_train, y_test):
+def run_classic_mlp(X_train_pca, X_test_pca, y_train, y_test, n_splits=5, n_iterations=500):
     """
-    Fit a Logistic Regression model and analyze its performance using PCA-transformed features.
+    Fit an MLP model and analyze its performance using PCA-transformed features with cross-validation.
 
     Args:
     X_train_pca (numpy array): Training data features after PCA transformation.
     X_test_pca (numpy array): Test data features after PCA transformation.
     y_train (numpy array): Training data labels.
     y_test (numpy array): Test data labels.
+    n_splits (int): Number of cross-validation splits.
+    n_iterations (int): Number of training iterations.
     """
-    # Initialize LogisticRegression model for iterative learning
-    mlp = MLPClassifier(hidden_layer_sizes=(15, 20, 15), activation="tanh", solver="sgd", alpha=0.005383724166734261,
-                        learning_rate_init=0.0015898533701208645, learning_rate="invscaling", batch_size=256,
-                        max_iter=1, early_stopping=False, tol=0.00032994812784605145, shuffle=True, warm_start=True)
-    train_log_losses, test_log_losses = [], []
-    n_iterations = 5  #406
-    time_list = []
+    # Combine the training and test datasets
+    X_pca = np.concatenate((X_train_pca, X_test_pca), axis=0)
+    y = np.concatenate((y_train, y_test), axis=0)
 
-    # Perform training over a set number of iterations to gather loss data
-    for i in range(1, n_iterations+1):
-        start_time = time.time()
-        mlp.fit(X_train_pca, y_train)
-        time_list.append(time.time() - start_time)
+    skf = StratifiedKFold(n_splits=n_splits)
+    overall_train_log_losses, overall_test_log_losses = np.zeros((n_splits, n_iterations)), np.zeros((n_splits, n_iterations))
+    overall_accuracies, overall_precisions, overall_recalls, overall_f1s = np.zeros((n_splits, n_iterations)), np.zeros((n_splits, n_iterations)), np.zeros((n_splits, n_iterations)), np.zeros((n_splits, n_iterations))
+    total_time_list = np.zeros(n_iterations)
 
-        # Predict probabilities for both training and test sets
-        train_probs = mlp.predict_proba(X_train_pca)
-        test_probs = mlp.predict_proba(X_test_pca)
+    for fold_idx, (train_index, test_index) in enumerate(skf.split(X_pca, y)):
+        X_train, X_test = X_pca[train_index], X_pca[test_index]
+        y_train, y_test = y[train_index], y[test_index]
 
-        # Compute log loss for the training and test sets
-        train_loss = log_loss(y_train, train_probs)
-        test_loss = log_loss(y_test, test_probs)
-        print("Iter: ", i)
-        print("Time: ", sum(time_list))
-        print("train_loss: ", train_loss)
-        print("test_loss: ", test_loss)
-        train_log_losses.append(train_loss)
-        test_log_losses.append(test_loss)
-    print("Time list: ", time_list)
-    print("Train loss list: ", train_log_losses)
-    print("Test loss list: ", test_log_losses)
+        # Initialize MLPClassifier model for iterative learning
+        mlp = MLPClassifier(hidden_layer_sizes=(15, 20, 15), activation="tanh", solver="sgd", alpha=0.005383724166734261,
+                            learning_rate_init=0.0015898533701208645, learning_rate="invscaling", batch_size=256,
+                            max_iter=1, early_stopping=False, tol=0.00032994812784605145, shuffle=True, warm_start=True)
 
-    print("Classic MLP:")
-    plot_losses(train_log_losses, test_log_losses)
-    summarize_best_loss_performance(test_log_losses, train_log_losses, time_list)
+        fold_train_losses, fold_test_losses = [], []
+        fold_accuracies, fold_precisions, fold_recalls, fold_f1s = [], [], [], []
+        time_list = []
 
-    # Find the best threshold for binary classification by maximizing the F1 score
-    threshold = 0.0
-    accuracy_lst, precision_lst, recall_lst, f1_lst = [], [], [], []
-    while threshold <= 1.0:
-        y_prob = mlp.predict_proba(X_test_pca)[:, 1]
-        y_pred = (y_prob > threshold).astype(int)
-        accuracy_lst.append((accuracy_score(y_test, y_pred), threshold))
-        precision_lst.append((precision_score(y_test, y_pred, zero_division=0), threshold))
-        recall_lst.append((recall_score(y_test, y_pred), threshold))
-        f1_lst.append((f1_score(y_test, y_pred), threshold))
-        threshold += 0.01
+        for i in range(1, n_iterations + 1):
+            start_time = time.time()
+            mlp.fit(X_train, y_train)
+            iteration_time = time.time() - start_time
+            time_list.append(iteration_time)
 
-    max_f1_score = max(f1_lst, key=lambda x: x[0])[0]
-    best_thresholds = [threshold for f1, threshold in f1_lst if f1 == max_f1_score]
+            # Predict probabilities for both training and test sets
+            train_probs = mlp.predict_proba(X_train)
+            test_probs = mlp.predict_proba(X_test)
 
-    # Output the best thresholds and corresponding performance metrics
-    for th in best_thresholds:
-        index = [i for i, (f1, threshold) in enumerate(f1_lst) if threshold == th][0]
-        print(f"Threshold={th:.2f}, Accuracy={accuracy_lst[index][0]:.4f}, "
-              f"Precision={precision_lst[index][0]:.4f}, Recall={recall_lst[index][0]:.4f}, "
-              f"F1-score={f1_lst[index][0]:.4f}")
+            # Compute log loss for the training and test sets
+            train_loss = log_loss(y_train, train_probs)
+            test_loss = log_loss(y_test, test_probs)
+
+            fold_train_losses.append(train_loss)
+            fold_test_losses.append(test_loss)
+
+            # Find the best threshold for binary classification by maximizing the F1 score
+            best_f1 = 0
+            best_threshold = 0.0
+            for threshold in np.arange(0.0, 1.01, 0.01):
+                y_pred = (test_probs[:, 1] > threshold).astype(int)
+                f1 = f1_score(y_test, y_pred)
+                if f1 > best_f1:
+                    best_f1 = f1
+                    best_threshold = threshold
+
+            # Compute accuracy, precision, recall, and F1 score using the best threshold
+            y_pred = (test_probs[:, 1] > best_threshold).astype(int)
+            accuracy = accuracy_score(y_test, y_pred)
+            precision = precision_score(y_test, y_pred, zero_division=0)
+            recall = recall_score(y_test, y_pred)
+
+            fold_accuracies.append(accuracy)
+            fold_precisions.append(precision)
+            fold_recalls.append(recall)
+            fold_f1s.append(best_f1)
+
+        # Accumulate losses and metrics for each fold
+        overall_train_log_losses[fold_idx] = np.array(fold_train_losses)
+        overall_test_log_losses[fold_idx] = np.array(fold_test_losses)
+        overall_accuracies[fold_idx] = np.array(fold_accuracies)
+        overall_precisions[fold_idx] = np.array(fold_precisions)
+        overall_recalls[fold_idx] = np.array(fold_recalls)
+        overall_f1s[fold_idx] = np.array(fold_f1s)
+        total_time_list += np.array(time_list)
+
+    # Average the losses and metrics across all folds
+    avg_train_log_losses = np.mean(overall_train_log_losses, axis=0)
+    avg_test_log_losses = np.mean(overall_test_log_losses, axis=0)
+    avg_accuracies = np.mean(overall_accuracies, axis=0)
+    avg_precisions = np.mean(overall_precisions, axis=0)
+    avg_recalls = np.mean(overall_recalls, axis=0)
+    avg_f1s = np.mean(overall_f1s, axis=0)
+    avg_time_list = total_time_list / n_splits
+
+    # Print the averaged results in the desired format
+    print("train_loss_list =", avg_train_log_losses.tolist())
+    print("test_loss_list =", avg_test_log_losses.tolist())
+    print("accuracy_list =", avg_accuracies.tolist())
+    print("precision_list =", avg_precisions.tolist())
+    print("recall_list =", avg_recalls.tolist())
+    print("f1_list =", avg_f1s.tolist())
+    print("time_list =", avg_time_list.tolist())
+
+    print("Classic MLP with Cross-Validation:")
+    plot_losses(avg_train_log_losses, avg_test_log_losses)
+    summarize_best_loss_performance(avg_test_log_losses, avg_train_log_losses, avg_time_list)
+
+    # Final evaluation on the combined test set using the best threshold
+    test_probs = mlp.predict_proba(X_test_pca)
+    best_f1 = 0
+    best_threshold = 0.0
+    for threshold in np.arange(0.0, 1.01, 0.01):
+        y_pred = (test_probs[:, 1] > threshold).astype(int)
+        f1 = f1_score(y_test, y_pred)
+        if f1 > best_f1:
+            best_f1 = f1
+            best_threshold = threshold
+
+    y_pred = (test_probs[:, 1] > best_threshold).astype(int)
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, zero_division=0)
+    recall = recall_score(y_test, y_pred)
+
+    print(f"Best Threshold={best_threshold:.2f}, Accuracy={accuracy:.4f}, Precision={precision:.4f}, Recall={recall:.4f}, F1-score={best_f1:.4f}")
+
 
 # import optuna
 #

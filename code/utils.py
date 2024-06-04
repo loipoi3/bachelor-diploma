@@ -17,7 +17,7 @@ def plot_losses(train_losses: list, test_losses: list):
     plt.ylabel('Значення функції втрат')
     plt.title('Зміна функції втрат для навчальної та тестової вибірок')
     plt.legend()
-    plt.xticks(list(range(1, 2)) + list(range(50, len(train_losses) + 1, 50)))
+    plt.xticks(list(range(1, 2)) + list(range(500, len(train_losses) + 1, 500)))
     plt.show()
 
 
@@ -37,7 +37,7 @@ def summarize_best_loss_performance(test_losses: list, train_losses: list, time_
     total_times_up_to_best_test = [sum(time_list[:i]) for i in best_test_indexes]
 
     for i in range(1, len(train_losses) + 1):
-        if i % 1 == 0:
+        if i % 1000 == 0:
             print("Iter: ", i)
             print("Time: ", sum(time_list[:i]))
             print("train_loss: ", train_losses[i-1])

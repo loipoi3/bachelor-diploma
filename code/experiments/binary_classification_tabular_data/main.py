@@ -81,20 +81,21 @@ if __name__ == "__main__":
     y = df.iloc[:, -1].values
 
     # Split data into training and testing sets with a test size of 20%
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     # Standardize features by removing the mean and scaling to unit variance
     scaler = StandardScaler()
-    X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.transform(X_test)
+    X_scaled = scaler.fit_transform(X)
+    # X_train_scaled = scaler.fit_transform(X_train)
+    # X_test_scaled = scaler.transform(X_test)
     # study = optuna.create_study(direction='maximize')
     # study.optimize(objective, n_trials=1000)
     #
     # print("Best parameters:", study.best_trial.params)
     # print("Best score:", study.best_trial.value)
     # Run the different ML model pipelines with the processed data
-    res_time = run_classic_mlp(X_train_scaled, X_test_scaled, y_train, y_test)
-    print()
-    run_mlp_with_ga(X_train_scaled, X_test_scaled, y_train, y_test)
-    print()
-    run_one_plus_lambda_ea_with_gp(X_train_scaled, X_test_scaled, y_train, y_test, res_time)
+    res_time = run_classic_mlp(X_scaled, y)
+    # print()
+    # run_mlp_with_ga(X_train_scaled, X_test_scaled, y_train, y_test)
+    # print()
+    # run_one_plus_lambda_ea_with_gp(X_train_scaled, X_test_scaled, y_train, y_test, res_time)

@@ -1,9 +1,12 @@
+import numpy as np
+from sklearn.model_selection import StratifiedKFold
+
 from code.models.one_plus_lambda_ea_with_gp_encodings import GeneticAlgorithmModel
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from code.utils import plot_losses, summarize_best_loss_performance
 
 
-def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, mlp_time):
+def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_splits=5, n_iterations=3000):
     """
     Train and evaluate a genetic algorithm model with guided propagation on PCA-transformed data.
 
@@ -12,46 +15,104 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, mlp
     X_test_pca (numpy array): PCA-transformed features for the test data.
     y_train (numpy array): Target labels for the training data.
     y_test (numpy array): Target labels for the test data.
+    n_splits (int): Number of cross-validation splits.
+    n_iterations (int): Number of iterations for the genetic algorithm.
     """
-    # Initialize and run the genetic algorithm model
-    primitive_set = ["sub", "mul", "min", "max", "hypot", "_safe_atan2", "_float_lt", "_float_gt", "_float_ge",
-                     "_float_le"]
-    terminal_set = ["Constant_0", "E"]
+    # Combine the training and test datasets
+    X_pca = np.concatenate((X_train_pca, X_test_pca), axis=0)
+    y = np.concatenate((y_train, y_test), axis=0)
+
+    skf = StratifiedKFold(n_splits=n_splits)
+    overall_train_log_losses = []
+    overall_test_log_losses = []
+    overall_accuracies = []
+    overall_precisions = []
+    overall_recalls = []
+    overall_f1s = []
+    total_time_list = []
+
+    for fold_idx, (train_index, test_index) in enumerate(skf.split(X_pca, y)):
+        print("fold_idx:", fold_idx)
+        X_train, X_test = X_pca[train_index], X_pca[test_index]
+        y_train, y_test = y[train_index], y[test_index]
+
+        # Initialize and run the genetic algorithm model
+        primitive_set = ["sub", "mul", "min", "max", "hypot", "_safe_atan2", "_float_lt", "_float_gt", "_float_ge", "_float_le"]
+        terminal_set = ["Constant_0", "E"]
+        model = GeneticAlgorithmModel(X_train, y_train, X_test, y_test, 6, primitive_set, terminal_set)
+        champion, train_losses, test_losses, time_list, fold_f1s, fold_accuracies, fold_precisions, fold_recalls = model.run(lambd=4, max_generations=n_iterations, save_checkpoint_path="")
+
+        fold_train_losses = train_losses
+        fold_test_losses = test_losses
+
+        # Accumulate losses and metrics for each fold
+        overall_train_log_losses.append(fold_train_losses)
+        overall_test_log_losses.append(fold_test_losses)
+        overall_accuracies.append(fold_accuracies)
+        overall_precisions.append(fold_precisions)
+        overall_recalls.append(fold_recalls)
+        overall_f1s.append(fold_f1s)
+        total_time_list.append(time_list)
+
+    # Convert lists to numpy arrays for easier averaging
+    overall_train_log_losses = np.array(overall_train_log_losses)
+    overall_test_log_losses = np.array(overall_test_log_losses)
+    overall_accuracies = np.array(overall_accuracies)
+    overall_precisions = np.array(overall_precisions)
+    overall_recalls = np.array(overall_recalls)
+    overall_f1s = np.array(overall_f1s)
+    total_time_list = np.array(total_time_list)
+
+    # Average the losses and metrics across all folds for each iteration
+    avg_train_log_losses = np.mean(overall_train_log_losses, axis=0)
+    avg_test_log_losses = np.mean(overall_test_log_losses, axis=0)
+    avg_accuracies = np.mean(overall_accuracies, axis=0)
+    avg_precisions = np.mean(overall_precisions, axis=0)
+    avg_recalls = np.mean(overall_recalls, axis=0)
+    avg_f1s = np.mean(overall_f1s, axis=0)
+    avg_time_list = np.mean(total_time_list, axis=0)
+
+    # Print the averaged results in the desired format
+    print("train_loss_list =", avg_train_log_losses.tolist())
+    print("test_loss_list =", avg_test_log_losses.tolist())
+    print("accuracy_list =", avg_accuracies.tolist())
+    print("precision_list =", avg_precisions.tolist())
+    print("recall_list =", avg_recalls.tolist())
+    print("f1_list =", avg_f1s.tolist())
+    print("time_list =", avg_time_list.tolist())
+
+    with open('output.txt', 'w') as file:
+        # Write the lists to the file
+        file.write("train_loss_list =" + str(avg_train_log_losses.tolist()) + "\n")
+        file.write("test_loss_list =" + str(avg_test_log_losses.tolist()) + "\n")
+        file.write("accuracy_list =" + str(avg_accuracies.tolist()) + "\n")
+        file.write("precision_list =" + str(avg_precisions.tolist()) + "\n")
+        file.write("recall_list =" + str(avg_recalls.tolist()) + "\n")
+        file.write("f1_list =" + str(avg_f1s.tolist()) + "\n")
+        file.write("time_list =" + str(avg_time_list.tolist()) + "\n")
+
+    print("(1 + lambda) - EA with GP and Cross-Validation:")
+    plot_losses(avg_train_log_losses, avg_test_log_losses)
+    summarize_best_loss_performance(avg_test_log_losses, avg_train_log_losses, avg_time_list)
+
+    # Final evaluation on the combined test set using the best threshold
     model = GeneticAlgorithmModel(X_train_pca, y_train, X_test_pca, y_test, 6, primitive_set, terminal_set)
-    champion, train_losses, test_losses, time_list = model.run(lambd=4, max_generations=0,
-                                                               save_checkpoint_path="",
-                                                               start_checkpoint="experiments/binary_classification_image_data/checkpoints/lambda_4_depth_6_pca/checkpoint_gen_299.pkl",
-                                                               save_checkpoint=False)
-
-    print("(1 + lambda) - EA with GP:")
-    # Plot the evolution of training and testing losses over generations
-    plot_losses(train_losses, test_losses)
-    # Summarize the performance in terms of test loss and computation time
-    summarize_best_loss_performance(test_losses, train_losses, time_list)
-
-    # Analyze model predictions at various thresholds to maximize F1 score
-    threshold = 0.0
-    accuracy_lst, precision_lst, recall_lst, f1_lst = [], [], [], []
-    while threshold <= 1.0:
-        # Predict using the champion model at the current threshold
+    champion, _, _, _ = model.run(lambd=4, max_generations=n_iterations)
+    best_f1 = 0
+    best_threshold = 0.0
+    for threshold in np.arange(0.0, 1.01, 0.01):
         y_pred = model.make_predictions_with_threshold(champion, X_test_pca, threshold=threshold)
-        # Evaluate and store different performance metrics
-        accuracy_lst.append((accuracy_score(y_test, y_pred), threshold))
-        precision_lst.append((precision_score(y_test, y_pred, zero_division=0), threshold))
-        recall_lst.append((recall_score(y_test, y_pred), threshold))
-        f1_lst.append((f1_score(y_test, y_pred), threshold))
-        threshold += 0.01
+        f1 = f1_score(y_test, y_pred)
+        if f1 > best_f1:
+            best_f1 = f1
+            best_threshold = threshold
 
-    # Identify the threshold(s) that yielded the highest F1 score
-    max_f1_score = max(f1_lst, key=lambda x: x[0])[0]
-    best_thresholds = [threshold for f1, threshold in f1_lst if f1 == max_f1_score]
+    y_pred = model.make_predictions_with_threshold(champion, X_test_pca, threshold=best_threshold)
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, zero_division=0)
+    recall = recall_score(y_test, y_pred)
 
-    # Output the best performance metrics at optimal thresholds
-    for th in best_thresholds:
-        index = [i for i, (f1, threshold) in enumerate(f1_lst) if threshold == th][0]
-        print(f"Threshold={th:.2f}, Accuracy={accuracy_lst[index][0]:.4f}, "
-              f"Precision={precision_lst[index][0]:.4f}, Recall={recall_lst[index][0]:.4f}, "
-              f"F1-score={f1_lst[index][0]:.4f}")
+    print(f"Best Threshold={best_threshold:.2f}, Accuracy={accuracy:.4f}, Precision={precision:.4f}, Recall={recall:.4f}, F1-score={best_f1:.4f}")
 
 # import optuna
 # from itertools import combinations
