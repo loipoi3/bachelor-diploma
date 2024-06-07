@@ -8,14 +8,14 @@
 \contentsline {section}{\numberline {1.4}Процес навчання моделей для задач класифікації}{16}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Огляд суміжних робіт}{19}{section.1.5}%
 \contentsline {section}{Висновки до розділу \ref {chap:review}}{22}{section.1.5}%
-\contentsline {chapter}{\numberline {2}Підготовка до проведення дослідження}{23}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Використані інструменти та ресурси}{23}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Опис використаних наборів даних}{25}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Вплив Expressive Encodings на ефективність класифікаційних алгоритмів}{27}{section.2.3}%
-\contentsline {section}{Висновки до розділу \ref {chap:theory}}{28}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Попередня обробка даних, побудова моделей та оцінка методів}{30}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Попередня обробка даних}{30}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Детальний опис моделей та підбір гіперпараметрів моделей}{32}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Навчання моделей та порівняльний аналіз результатів}{35}{section.3.3}%
-\contentsline {section}{Висновки до розділу \ref {chap:practice}}{49}{figure.caption.31}%
-\contentsline {chapter}{Висновки}{51}{chapter*.32}%
+\contentsline {chapter}{\numberline {2}Підготовка до проведення дослідження}{24}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Використані інструменти та ресурси}{24}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Опис використаних наборів даних}{26}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Вплив Expressive Encodings на ефективність класифікаційних алгоритмів}{28}{section.2.3}%
+\contentsline {section}{Висновки до розділу \ref {chap:theory}}{29}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Попередня обробка даних, побудова моделей та оцінка методів}{31}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Попередня обробка даних}{31}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Детальний опис моделей та підбір гіперпараметрів моделей}{33}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Навчання моделей та порівняльний аналіз результатів}{36}{section.3.3}%
+\contentsline {section}{Висновки до розділу \ref {chap:practice}}{50}{figure.caption.31}%
+\contentsline {chapter}{Висновки}{52}{chapter*.32}%
