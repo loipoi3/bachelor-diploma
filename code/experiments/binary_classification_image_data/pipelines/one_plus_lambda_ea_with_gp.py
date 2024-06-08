@@ -1,6 +1,6 @@
+import pickle
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
-
 from code.models.one_plus_lambda_ea_with_gp_encodings import GeneticAlgorithmModel
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from code.utils import plot_losses, summarize_best_loss_performance
@@ -22,7 +22,6 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_s
     X_pca = np.concatenate((X_train_pca, X_test_pca), axis=0)
     y = np.concatenate((y_train, y_test), axis=0)
 
-    skf = StratifiedKFold(n_splits=n_splits)
     overall_train_log_losses = []
     overall_test_log_losses = []
     overall_accuracies = []
@@ -31,7 +30,19 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_s
     overall_f1s = []
     total_time_list = []
 
-    for fold_idx, (train_index, test_index) in enumerate(skf.split(X_pca, y)):
+    file_path = "/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/splits.pkl"
+    # skf = StratifiedKFold(n_splits=n_splits)
+    # splits = list(skf.split(X_pca, y))
+    # with open(file_path, 'wb') as f:
+    #     pickle.dump(splits, f)
+    # print(f"Splits saved to {file_path}")
+
+    with open(file_path, 'rb') as f:
+        splits = pickle.load(f)
+
+    for fold_idx, (train_index, test_index) in enumerate(splits):
+        # if fold_idx == 0 or fold_idx == 1:
+        #     continue
         print("fold_idx:", fold_idx)
         X_train, X_test = X_pca[train_index], X_pca[test_index]
         y_train, y_test = y[train_index], y[test_index]
@@ -40,7 +51,19 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_s
         primitive_set = ["sub", "mul", "min", "max", "hypot", "_safe_atan2", "_float_lt", "_float_gt", "_float_ge", "_float_le"]
         terminal_set = ["Constant_0", "E"]
         model = GeneticAlgorithmModel(X_train, y_train, X_test, y_test, 6, primitive_set, terminal_set)
-        champion, train_losses, test_losses, time_list, fold_f1s, fold_accuracies, fold_precisions, fold_recalls = model.run(lambd=4, max_generations=n_iterations, save_checkpoint_path="")
+        if fold_idx == 0:
+            champion, train_losses, test_losses, time_list, fold_f1s, fold_accuracies, fold_precisions, fold_recalls = model.run(
+                lambd=4, max_generations=n_iterations,
+                save_checkpoint_path=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}",
+                save_checkpoint=True,
+                start_checkpoint=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}/checkpoint_gen_909.pkl")
+        else:
+            champion, train_losses, test_losses, time_list, fold_f1s, fold_accuracies, fold_precisions, fold_recalls = model.run(
+                lambd=4, max_generations=n_iterations,
+                save_checkpoint_path=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}",
+                save_checkpoint=True,
+                #start_checkpoint=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}/checkpoint_gen_1.pkl"
+            )
 
         fold_train_losses = train_losses
         fold_test_losses = test_losses
@@ -48,10 +71,10 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_s
         # Accumulate losses and metrics for each fold
         overall_train_log_losses.append(fold_train_losses)
         overall_test_log_losses.append(fold_test_losses)
-        overall_accuracies.append(fold_accuracies)
-        overall_precisions.append(fold_precisions)
-        overall_recalls.append(fold_recalls)
-        overall_f1s.append(fold_f1s)
+        # overall_accuracies.append(fold_accuracies)
+        # overall_precisions.append(fold_precisions)
+        # overall_recalls.append(fold_recalls)
+        # overall_f1s.append(fold_f1s)
         total_time_list.append(time_list)
 
     # Convert lists to numpy arrays for easier averaging
