@@ -1,19 +1,21 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'thesis.blg'
-[61] biber:340> INFO - === Fri Jun  7, 2024, 17:52:35
-[93] Biber.pm:418> INFO - Reading 'thesis.bcf'
-[146] Biber.pm:972> INFO - Found 37 citekeys in bib section 0
-[159] Biber.pm:4383> INFO - Processing section 0
-[167] Biber.pm:4574> INFO - Looking for bibtex file '/home/loipoi/bachelor-diploma/thesis/thesis.bib' for section 0
-[168] bibtex.pm:1713> INFO - LaTeX decoding ...
-[190] bibtex.pm:1518> INFO - Found BibTeX data source '/home/loipoi/bachelor-diploma/thesis/thesis.bib'
-[417] UCollate.pm:68> INFO - Overriding locale 'uk-UA' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[417] UCollate.pm:68> INFO - Overriding locale 'uk-UA' defaults 'variable = shifted' with 'variable = non-ignorable'
-[417] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'uk-UA'
-[444] bbl.pm:654> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
-[459] bbl.pm:757> INFO - Output to thesis.bbl
-[459] Biber.pm:130> WARN - legacy month field 'jul' in entry 'ct19' is not an integer - this will probably not sort properly.
-[459] Biber.pm:130> WARN - legacy month field 'April 24-26' in entry 'ct31' is not an integer - this will probably not sort properly.
-[459] Biber.pm:130> WARN - legacy month field 'January 6' in entry 'ct32' is not an integer - this will probably not sort properly.
-[459] Biber.pm:130> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
-[459] Biber.pm:132> INFO - WARNINGS: 4
+[62] biber:340> INFO - === Sun Jun  9, 2024, 11:34:40
+[71] Biber.pm:418> INFO - Reading 'thesis.bcf'
+[124] Biber.pm:972> INFO - Found 38 citekeys in bib section 0
+[133] Biber.pm:4383> INFO - Processing section 0
+[140] Biber.pm:4574> INFO - Looking for bibtex file '/home/loipoi/bachelor-diploma/thesis/thesis.bib' for section 0
+[141] bibtex.pm:1713> INFO - LaTeX decoding ...
+[164] bibtex.pm:1518> INFO - Found BibTeX data source '/home/loipoi/bachelor-diploma/thesis/thesis.bib'
+[373] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[373] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[373] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[373] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[399] bbl.pm:654> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[414] bbl.pm:757> INFO - Output to thesis.bbl
+[414] Biber.pm:130> WARN - legacy year field 'n.d.' in entry 'ct38' is not an integer - this will probably not sort properly.
+[414] Biber.pm:130> WARN - legacy month field 'jul' in entry 'ct19' is not an integer - this will probably not sort properly.
+[414] Biber.pm:130> WARN - legacy month field 'April 24-26' in entry 'ct31' is not an integer - this will probably not sort properly.
+[414] Biber.pm:130> WARN - legacy month field 'January 6' in entry 'ct32' is not an integer - this will probably not sort properly.
+[414] Biber.pm:130> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[414] Biber.pm:132> INFO - WARNINGS: 5

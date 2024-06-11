@@ -10,14 +10,18 @@ def plot_losses(train_losses: list, test_losses: list):
     test_losses (list of floats): A list containing the loss values of the testing set.
     """
     plt.figure(figsize=(10, 5))
+    
+    # Set the default font size
+    plt.rcParams.update({'font.size': 14})
+    
     generations = range(1, len(train_losses) + 1)
     plt.plot(generations, train_losses, label='Функція втрат для навчальної вибірки')
     plt.plot(generations, test_losses, label='Функція втрат для тестової вибірки')
-    plt.xlabel('Ітерації')
-    plt.ylabel('Значення функції втрат')
-    plt.title('Зміна функції втрат для навчальної та тестової вибірок')
-    plt.legend()
-    plt.xticks(list(range(1, 2)) + list(range(500, len(train_losses) + 1, 500)))
+    plt.xlabel('Ітерації', fontsize=16)
+    plt.ylabel('Значення функції втрат', fontsize=16)
+    plt.title('Зміна функції втрат для навчальної та тестової вибірок', fontsize=18)
+    plt.legend(fontsize=14)
+    plt.xticks(list(range(1, 2)) + list(range(1000, len(train_losses) + 1, 1000)))
     plt.show()
 
 

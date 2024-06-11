@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from code.utils import plot_losses, summarize_best_loss_performance
 
 
-def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_splits=5, n_iterations=3000):
+def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_splits=5, n_iterations=0):
     """
     Train and evaluate a genetic algorithm model with guided propagation on PCA-transformed data.
 
@@ -41,8 +41,8 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_s
         splits = pickle.load(f)
 
     for fold_idx, (train_index, test_index) in enumerate(splits):
-        # if fold_idx == 0 or fold_idx == 1:
-        #     continue
+        # if fold_idx == 0 or fold_idx == 1 or fold_idx == 2:
+        #    continue
         print("fold_idx:", fold_idx)
         X_train, X_test = X_pca[train_index], X_pca[test_index]
         y_train, y_test = y[train_index], y[test_index]
@@ -51,19 +51,29 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_s
         primitive_set = ["sub", "mul", "min", "max", "hypot", "_safe_atan2", "_float_lt", "_float_gt", "_float_ge", "_float_le"]
         terminal_set = ["Constant_0", "E"]
         model = GeneticAlgorithmModel(X_train, y_train, X_test, y_test, 6, primitive_set, terminal_set)
-        if fold_idx == 0:
-            champion, train_losses, test_losses, time_list, fold_f1s, fold_accuracies, fold_precisions, fold_recalls = model.run(
-                lambd=4, max_generations=n_iterations,
-                save_checkpoint_path=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}",
-                save_checkpoint=True,
-                start_checkpoint=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}/checkpoint_gen_909.pkl")
-        else:
-            champion, train_losses, test_losses, time_list, fold_f1s, fold_accuracies, fold_precisions, fold_recalls = model.run(
-                lambd=4, max_generations=n_iterations,
-                save_checkpoint_path=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}",
-                save_checkpoint=True,
-                #start_checkpoint=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}/checkpoint_gen_1.pkl"
-            )
+
+        ## eval
+        champion, train_losses, test_losses, time_list, fold_f1s, fold_accuracies, fold_precisions, fold_recalls = model.run(
+            lambd=4, max_generations=n_iterations,
+            save_checkpoint_path="",
+            save_checkpoint=False,
+            start_checkpoint=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}/checkpoint_gen_4999.pkl"
+        )
+
+        # if fold_idx == 3:
+        # champion, train_losses, test_losses, time_list, fold_f1s, fold_accuracies, fold_precisions, fold_recalls = model.run(
+        #     lambd=4, max_generations=n_iterations,
+        #     save_checkpoint_path=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}",
+        #     save_checkpoint=True,
+        #     start_checkpoint=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}/checkpoint_gen_3999.pkl"
+        # )
+        # else:
+        #    champion, train_losses, test_losses, time_list, fold_f1s, fold_accuracies, fold_precisions, fold_recalls = model.run(
+        #         lambd=4, max_generations=n_iterations,
+        #         save_checkpoint_path=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}",
+        #         save_checkpoint=True,
+        #         start_checkpoint=f"/home/loipoi/bachelor-diploma/code/experiments/binary_classification_image_data/checkpoints/cv/{fold_idx}/checkpoint_gen_2999.pkl"
+        #    )
 
         fold_train_losses = train_losses
         fold_test_losses = test_losses
@@ -71,10 +81,10 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_s
         # Accumulate losses and metrics for each fold
         overall_train_log_losses.append(fold_train_losses)
         overall_test_log_losses.append(fold_test_losses)
-        # overall_accuracies.append(fold_accuracies)
-        # overall_precisions.append(fold_precisions)
-        # overall_recalls.append(fold_recalls)
-        # overall_f1s.append(fold_f1s)
+        overall_accuracies.append(fold_accuracies)
+        overall_precisions.append(fold_precisions)
+        overall_recalls.append(fold_recalls)
+        overall_f1s.append(fold_f1s)
         total_time_list.append(time_list)
 
     # Convert lists to numpy arrays for easier averaging
@@ -103,6 +113,10 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_s
     print("recall_list =", avg_recalls.tolist())
     print("f1_list =", avg_f1s.tolist())
     print("time_list =", avg_time_list.tolist())
+    print(avg_accuracies)
+    print(avg_precisions)
+    print(avg_recalls)
+    print(avg_f1s)
 
     with open('output.txt', 'w') as file:
         # Write the lists to the file
@@ -118,24 +132,24 @@ def run_one_plus_lambda_ea_with_gp(X_train_pca, X_test_pca, y_train, y_test, n_s
     plot_losses(avg_train_log_losses, avg_test_log_losses)
     summarize_best_loss_performance(avg_test_log_losses, avg_train_log_losses, avg_time_list)
 
-    # Final evaluation on the combined test set using the best threshold
-    model = GeneticAlgorithmModel(X_train_pca, y_train, X_test_pca, y_test, 6, primitive_set, terminal_set)
-    champion, _, _, _ = model.run(lambd=4, max_generations=n_iterations)
-    best_f1 = 0
-    best_threshold = 0.0
-    for threshold in np.arange(0.0, 1.01, 0.01):
-        y_pred = model.make_predictions_with_threshold(champion, X_test_pca, threshold=threshold)
-        f1 = f1_score(y_test, y_pred)
-        if f1 > best_f1:
-            best_f1 = f1
-            best_threshold = threshold
+    # # Final evaluation on the combined test set using the best threshold
+    # model = GeneticAlgorithmModel(X_train_pca, y_train, X_test_pca, y_test, 6, primitive_set, terminal_set)
+    # champion, _, _, _ = model.run(lambd=4, max_generations=n_iterations)
+    # best_f1 = 0
+    # best_threshold = 0.0
+    # for threshold in np.arange(0.0, 1.01, 0.01):
+    #     y_pred = model.make_predictions_with_threshold(champion, X_test_pca, threshold=threshold)
+    #     f1 = f1_score(y_test, y_pred)
+    #     if f1 > best_f1:
+    #         best_f1 = f1
+    #         best_threshold = threshold
 
-    y_pred = model.make_predictions_with_threshold(champion, X_test_pca, threshold=best_threshold)
-    accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, zero_division=0)
-    recall = recall_score(y_test, y_pred)
+    # y_pred = model.make_predictions_with_threshold(champion, X_test_pca, threshold=best_threshold)
+    # accuracy = accuracy_score(y_test, y_pred)
+    # precision = precision_score(y_test, y_pred, zero_division=0)
+    # recall = recall_score(y_test, y_pred)
 
-    print(f"Best Threshold={best_threshold:.2f}, Accuracy={accuracy:.4f}, Precision={precision:.4f}, Recall={recall:.4f}, F1-score={best_f1:.4f}")
+    # print(f"Best Threshold={best_threshold:.2f}, Accuracy={accuracy:.4f}, Precision={precision:.4f}, Recall={recall:.4f}, F1-score={best_f1:.4f}")
 
 # import optuna
 # from itertools import combinations

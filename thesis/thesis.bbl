@@ -582,6 +582,38 @@
       \verb https://books.google.com.ua/books?id=Po0RLQ7USIMC
       \endverb
     \endentry
+    \entry{ct38}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=bc923166ee9deff8aaec3449187ec045}{%
+           family={Kelly},
+           familyi={K\bibinitperiod},
+           given={Markelle},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d6a098c7e41cab1a9115f198c713e01c}{%
+           family={Longjohn},
+           familyi={L\bibinitperiod},
+           given={Rachel},
+           giveni={R\bibinitperiod}}}%
+        {{hash=3e2a5b1c1665fd2de62cc4895e59f330}{%
+           family={Nottingham},
+           familyi={N\bibinitperiod},
+           given={Kolby},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{9e01692dd9b77f31f20353d4ea6310f4}
+      \strng{fullhash}{9e01692dd9b77f31f20353d4ea6310f4}
+      \strng{bibnamehash}{9e01692dd9b77f31f20353d4ea6310f4}
+      \strng{authorbibnamehash}{9e01692dd9b77f31f20353d4ea6310f4}
+      \strng{authornamehash}{9e01692dd9b77f31f20353d4ea6310f4}
+      \strng{authorfullhash}{9e01692dd9b77f31f20353d4ea6310f4}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Available at \url{https://archive.ics.uci.edu}}
+      \field{title}{The UCI Machine Learning Repository}
+      \field{year}{n.d.}
+    \endentry
     \entry{ct32}{misc}{}
       \name{author}{3}{}{%
         {{hash=3afc8b505de8683602b269b824f8f813}{%
